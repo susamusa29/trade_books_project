@@ -63,8 +63,11 @@ class Book(models.Model):
 # Some foreign keys for the 1:N relationships
 # on_delete
 
-    bookSold = models.ForeignKey(UserProfile, related_name = 'book_sellers',on_delete = models.CASCADE)
-    bookBought = models.ForeignKey(UserProfile, related_name = 'book_buyers',on_delete = models.CASCADE)
+    bookSold = models.ForeignKey(UserProfile, related_name = 'book_sellers',on_delete = models.CASCADE, null= True, blank=True)
+    bookBought = models.ForeignKey(UserProfile, related_name = 'book_buyers',on_delete = models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.bookName
 
 # Have to add payments when models is created 
 # I think it is better to have a one to one relationship with payment and book in payment because it is safer. It is not safe to transfer
