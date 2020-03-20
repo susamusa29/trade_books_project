@@ -33,19 +33,7 @@ class UserProfile(models.Model):
 
 
     def __str__(self):
-        return self.user.username
-
-# Foreign Key user due to one to many relationship with payment
-
-class Payment(models.Model):
-    paymentID = models.IntegerField(primary_key = True, default=0)
-    processed = models.BooleanField(default = False)
-
-    #Foreign Keys
-    payee = models.ForeignKey(UserProfile, related_name ='payment_payee', on_delete = models.CASCADE)
-
-
-# The second model will be the book model
+        return self.user.username   # The second model will be the book model
 # Think of toString method for book, return will be the name but still authr will be needed
 # therefore, both should be included ? 
 class Book(models.Model):
@@ -79,8 +67,22 @@ class Book(models.Model):
     bookBought = models.ForeignKey(UserProfile, related_name = 'book_buyers',on_delete = models.CASCADE)
 
 # Have to add payments when models is created 
+# I think it is better to have a one to one relationship with payment and book in payment because it is safer. It is not safe to transfer
+# payment relationships in another table, in my opinion
 
-    payID = models.ForeignKey(Payment, on_delete = models.CASCADE, default = None)
+    # payID = models.ForeignKey(Payment, on_delete = models.CASCADE, default = None)
+
+# Foreign Key user due to one to many relationship with payment
+
+class Payment(models.Model):
+    paymentID = models.IntegerField(primary_key = True, default=0)
+    processed = models.BooleanField(default = False)
+
+    #Foreign Keys
+    payee = models.ForeignKey(UserProfile, related_name ='payment_payee', on_delete = models.CASCADE)
+
+    #OnetoOne reltionship with the bough book( One payment can be maid per book)
+    book_bought = models.OneToOneField(Book, related_name = 'book_bought', on_delete = models.CASCADE, default = None)
 
 
 
