@@ -35,9 +35,19 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+# Foreign Key user due to one to many relationship with payment
+
+class Payment(models.Model):
+    paymentID = models.IntegerField(primary_key = True, default=0)
+    processed = models.BooleanField(default = False)
+
+    #Foreign Keys
+    payee = models.ForeignKey(UserProfile, related_name ='payment_payee', on_delete = models.CASCADE)
+
 
 # The second model will be the book model
-
+# Think of toString method for book, return will be the name but still authr will be needed
+# therefore, both should be included ? 
 class Book(models.Model):
     BOOK_CODE_MAX_LENGTH = 120
     BOOK_NAME_MAX_LEBGTH = 100
@@ -69,3 +79,8 @@ class Book(models.Model):
     bookBought = models.ForeignKey(UserProfile, related_name = 'book_buyers',on_delete = models.CASCADE)
 
 # Have to add payments when models is created 
+
+    payID = models.ForeignKey(Payment, on_delete = models.CASCADE, default = None)
+
+
+
