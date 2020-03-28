@@ -59,6 +59,12 @@ class Book(models.Model):
     course = models.CharField(max_length=COURSE_NAME_MAX_LENGTH)
     year=models.IntegerField(default=1)
     bookDescription=models.CharField(max_length=BOOK_NAME_MAX_LEBGTH)
+    price = models.DecimalField(decimal_places=2, max_digits = 4, default=0)
+    currency = models.CharField(
+        max_length=3,
+        default='GBP',
+        blank=True
+    )
 
 # Some foreign keys for the 1:N relationships
 # on_delete
