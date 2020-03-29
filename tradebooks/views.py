@@ -9,7 +9,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
-
+def user_login(request):
+    return render(request, 'tradebooks/login.html')
+    
 def product(request):
     return render(request, 'tradebooks/product.html')
 
