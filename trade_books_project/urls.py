@@ -16,6 +16,7 @@ Including another URLconf
 
 todo:
     add new urls and index.html
+    will add an index url to the other urls (From Stanislava, will link the empty to login again)
 
 author: Stanislava Dyakova (2390717d)
         Teoh Yee Hou (2471020t)
@@ -28,7 +29,7 @@ from django.conf.urls.static import static
 from tradebooks import views
 
 urlpatterns = [
-    path('', views.index, name="index"),
+    path('', views.user_login, name='login'),
     path('admin/', admin.site.urls),
     path('tradebooks/', include('tradebooks.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
