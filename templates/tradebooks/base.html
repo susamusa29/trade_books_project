@@ -8,10 +8,12 @@
     note:
     footer a bit wonky
     moved scripts up. not working for other files if below.
+    added sign up/ login and profile button
 
     todo:
     change color
     add collapsed navbar expand button
+    create user.logged_in
 
 
     Author: Teoh Yee Hou (2471020t)
@@ -89,7 +91,7 @@
                     <!--<div class="collapse navbar-collapse" id="navbarCollapse">-->
                         <!--<div class="container">-->
                             <div class="row">
-                                <div class="col-md-10 col-xs-12">
+                                <div class="col-md-8 col-xs-12">
                                     <form class="form-inline mr-auto">
                                         <div class="form my-0">
                                             <input class="form-control"
@@ -110,10 +112,68 @@
                                         Advanced Search
                                     </a>
                                 </div>
+
+                                <div class = "col-md-2 col xs-12">
+                                <!-- login button -->
+                                    {% if user.logged_in %}
+                                        <!-- show link to user page adn option to logout-->
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle"
+                                               role="button"
+                                               id="userDropdown"
+                                               data-toggle="dropdown"
+                                               aria-haspoppup="true"
+                                               aria-expanded="false"
+                                               href="{% url 'tradebooks:user' %}">
+                                                My Profile
+                                            </a>
+                                            <div class="dropdown-menu"
+                                                 aria-labelledby="userDropdown">
+                                                <a class="dropdown-item"
+                                                   href="{% url 'tradebooks:user' %}">
+                                                    user
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   href="#">
+                                                    Sign Out
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% else %}
+                                        <!-- should lead to login page -->
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle"
+                                               role="button"
+                                               id="userDropdown"
+                                               data-toggle="dropdown"
+                                               aria-haspoppup="true"
+                                               aria-expanded="false"
+                                               href="#">
+                                                Sign up or Login
+                                            </a>
+                                            <div class="dropdown-menu"
+                                                 aria-labelledby="userDropdown">
+                                                <a class="dropdown-item"
+                                                   href="#">
+                                                    Sign Up
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   href="{% url 'tradebooks:login' %}">
+                                                    Login
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    <
+                                </div>
+
                             <!--</div>-->
                         <!--</div>-->
                     </div>
                 </nav>
+
+
+
                 <!-- add collapse button later -->
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
                     <div class="collapse navbar-collapse" id="navbarCollapse">
