@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+    Home page
+
+    note:
+    added carousel and latest release
+
+
+    todo:
+    add more releases below carousel.
+    remove hardcoded images
+    add sth to populae carousel with three newest listings
+    set size of images.
+
+
+    Author: Teoh Yee Hou (2471020t)
+    Filename: index.html
+
+-->
+{% extends 'tradebooks/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Home
+{% endblock %}
+
+{% block body_block %}
+    <!-- carousel featuring 3 latest listings-->
+    <div class="container">
+        <h5 class="display-3">Latest Release</h5>
+        <hr/>
+        <div id="bookCarousel"
+             class="carousel slide"
+             data-ride="carousel">
+
+            <!-- indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#bookCarousel"
+                    data-slide-to="0"
+                    class="active"></li>
+                <li data-target="#bookCarousel"
+                    data-slide-to="1"></li>
+                <li data-target="#bookCarousel"
+                    data-slide-to="2"></li>
+            </ol>
+
+            <!-- slide items -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="#">
+                        <img class="d-block w-100"
+                             src="https://i.kym-cdn.com/photos/images/newsfeed/001/505/718/136.jpg"
+                             alt="smudge">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#">
+                        <img class="d-block w-100"
+                             src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2013/05/08/11/half-cat-2048.jpg?width=1000&height=614&fit=bounds&format=pjpg&auto=webp&quality=70&crop=16:9,offset-y0.5"
+                             alt="bipedal cat">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#">
+                        <img class="d-block w-100"
+                             src="https://i.kym-cdn.com/photos/images/newsfeed/001/505/718/136.jpg"
+                             alt="smudge">
+                    </a>
+                </div>
+            </div>
+
+            <!-- navigation controls -->
+            <a class="carousel-control-prev"
+               href="#bookCarousel"
+               role="button"
+               data-slide="prev">
+                <span class="carousel-control-prev-icon"
+                      aria-hidden="true"></span>
+                <span class="sr-only">prev</span>
+            </a>
+            <a class="carousel-control-next"
+               href="#bookCarousel"
+               role="button"
+               data-slide="next">
+                <span class="carousel-control-next-icon"
+                      aria-hidden="true"></span>
+                <span class="sr-only">next</span>
+            </a>
+        </div>
+    </div>
+{% endblock %}

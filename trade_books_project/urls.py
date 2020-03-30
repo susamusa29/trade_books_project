@@ -1,4 +1,4 @@
-"""trade_books_project URL Configuration
+"""trade_books_project URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 
 
-    todo:
-     add new urls and index.html
+todo:
+    add new urls and index.html
+
+author: Stanislava Dyakova (2390717d)
+        Teoh Yee Hou (2471020t)
 """
 from django.contrib import admin
 from django.urls import path
@@ -25,7 +28,7 @@ from django.conf.urls.static import static
 from tradebooks import views
 
 urlpatterns = [
-    path('', views.user_login, name="login"),
+    path('', views.index, name="index"),
     path('admin/', admin.site.urls),
     path('tradebooks/', include('tradebooks.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
