@@ -12,5 +12,6 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     # maybe we can use slug for individual products
     path('product/', views.product, name='product'),
-    path('user/', views.user, name='user')
+    path('user/', views.user, name='user'),
+    path('register/', views.register, name='register'),
 ]
