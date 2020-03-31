@@ -138,7 +138,7 @@
                                 <!-- login button -->
                                 <!-- this helps me update the login empty path page, Stanislava-->
                                 {% block content %}
-                                    {% if user.logged_in %}
+                                    {% if user.is_active %}
                                         <!-- show link to user page adn option to logout-->
                                         <div class="dropdown show">
                                             <a class="btn btn-secondary dropdown-toggle"
@@ -156,8 +156,9 @@
                                                    href="{% url 'tradebooks:user' %}">
                                                     user
                                                 </a>
+                                                <!--added the logout button-->
                                                 <a class="dropdown-item"
-                                                   href="#">
+                                                   href="{% url 'tradebooks:logout' %}">
                                                     Sign Out
                                                 </a>
                                             </div>

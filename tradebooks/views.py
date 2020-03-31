@@ -28,10 +28,37 @@ def index(request):
     """
     return render(request, 'tradebooks/index.html')
 
+#only people who have logged in can access this view 
+@login_required
+#view for logging out sign out button
+def user_logout(request):
+    #use of logout method to log out the user
+    logout(request)
+    #goes back to home
+    return redirect(reverse('tradebooks:index'))
 
 def user_login(request):
-    """User login view."""
-    return render(request, 'tradebooks/login.html')
+    #pull relevent info if pos request
+    if request.method == 'POST':
+        #username and password needed
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        #check if combination is valid
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                # if the accunt is valid and active we can log the user in
+                login(request, user)
+                return redirect(reverse('tradebooks:index'))
+            else:
+                return HttpResponse("The account you entered is disabled.")
+        else:
+            #wrong details
+            print(f"Invalid login details: {username}, {password}")
+            return render (request, 'index.html')
+    else:
+        return render(request,'tradebooks/login.html')
 
 def register(request):
     #a value to tell the TEMPLATE whether registration was successful
