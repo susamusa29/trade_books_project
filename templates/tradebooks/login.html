@@ -1,12 +1,20 @@
 {% extends 'tradebooks/base.html' %}
-{% load staticfiles %} 
+{% load staticfiles %}
 {% load static %}
 <!--
-    Login Template 
+
+    Login Template
+
+    Note:
+    Teoh's edit- added an overlay for aesthetic purposes.
+
+    todo:
+    create a separate css for style.
+
     Author: Stanislava Dyakova
     StudentID:2390717D
 -->
-<!-- 
+<!--
     This is where the login template will inherit the additional css
 -->
 {% block head %}
@@ -120,12 +128,12 @@ span.psw {
 }
 
 @-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)} 
+  from {-webkit-transform: scale(0)}
   to {-webkit-transform: scale(1)}
 }
-  
+
 @keyframes animatezoom {
-  from {transform: scale(0)} 
+  from {transform: scale(0)}
   to {transform: scale(1)}
 }
 
@@ -146,6 +154,18 @@ span.psw {
       position:relative;
       margin: 0px;
     } */
+
+/* add overlay*/
+/* needa fix the part where it isnt covered */
+.overlay {
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+    left: 0;
+    /*top: 0;*/
+    background: rgba(0, 0, 0, 0.5);
+
+}
 </style>
 {% endblock %}
 
@@ -158,6 +178,8 @@ span.psw {
 
 {% endblock %}
     {% block content %}
+    <!-- i dont really get the use of this as this is already checked in
+      base.html -->
         {% if user.logged_in %}
         <!-- show link to user page adn option to logout-->
         <div class="dropdown show">
@@ -186,7 +208,9 @@ span.psw {
     {% endblock %}
 
 <h2></h2>
+
 <div class="section">
+  <div class="overlay">
     <div class="wrapper">
     <!-- <font color="white"><b>Have </b></font> -->
     <!-- <h3 role='textbox' aria-multiline='true'><b>Have <span>a Profile?</b></span></h3>  -->
@@ -195,14 +219,17 @@ span.psw {
     <p style="display: inline;"><font style="color:rgb(24, 84, 175)" size="10"><br/><b>Or <span>not?</span></b></font></p>
     <button id="myButton" class="button" >Sign up</button>
     </div>
+  </div>
 </div>
+
+<!-- rmb to change links to relative ie. {%url type., Teoh-->
 <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
         location.href = "http://127.0.0.1:8000/tradebooks/register/";
     };
 </script>
 <div id="id01" class="modal">
-  
+
   <form class="modal-content animate" action="/action_page.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -215,7 +242,7 @@ span.psw {
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
-        
+
       <button type="submit">Login</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
