@@ -5,3 +5,125 @@
     Author: Stanislava Dyakova
     StudentID:2390717D
 -->
+    {% block title_block %}
+        Register
+    {% endblock %}
+
+    {% block head %}
+        <!-- Custom CSS-->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+    {% endblock %}
+
+    {% block body_block%}
+    {% block header %}
+
+    {% endblock %}
+    {% block content %}
+    {% if user.logged_in %}
+                                        <!-- show link to user page adn option to logout-->
+                                        <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle"
+                                               role="button"
+                                               id="userDropdown"
+                                               data-toggle="dropdown"
+                                               aria-haspoppup="true"
+                                               aria-expanded="false"
+                                               href="{% url 'tradebooks:user' %}">
+                                                My Profile
+                                            </a>
+                                            <div class="dropdown-menu"
+                                                 aria-labelledby="userDropdown">
+                                                <a class="dropdown-item"
+                                                   href="{% url 'tradebooks:user' %}">
+                                                    user
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   href="#">
+                                                    Sign Out
+                                                </a>
+                                            </div>
+                                        </div>
+        {% endif %}
+    {% endblock %}
+
+    {% if registered %}
+    Thank you your profile has been created. Please press <a href="http://127.0.0.1:8000/tradebooks/index/">here.</a>
+    {%else%}
+    <form action="#" method="post">
+        <h2>Sign Up</h2>
+              <p>
+                  <label for="Email" class="floatLabel">Email</label>
+                  <input id="Email" name="Email" type="text">
+              </p>
+              <p>
+                  <label for="password" class="floatLabel">Password</label>
+                  <input id="password" name="password" type="password">
+                  <span>Enter a password longer than 8 characters</span>
+              </p>
+              <p>
+                  <label for="confirm_password" class="floatLabel">Confirm Password</label>
+                  <input id="confirm_password" name="confirm_password" type="password">
+                  <span>Your passwords do not match</span>
+              </p>
+              <p>
+                  <input type="submit" value="Create My Account" id="submit">
+              </p>
+          </form>
+          <script>
+              var $password = $("#password");
+    	    var $confirmPassword = $("#confirm_password");
+
+            //Hide hints
+            $("form span").hide();
+
+            function isPasswordValid() {
+            return $password.val().length > 8;
+            }
+
+            function arePasswordsMatching() {
+            return $password.val() === $confirmPassword.val();
+            }
+
+            function canSubmit() {
+            return isPasswordValid() && arePasswordsMatching();
+            }
+
+                function passwordEvent(){
+                    //Find out if password is valid  
+                    if(isPasswordValid()) {
+                    //Hide hint if valid
+                    $password.next().hide();
+                    } else {
+                    //else show hint
+                    $password.next().show();
+                    }
+                }
+
+                function confirmPasswordEvent() {
+                //Find out if password and confirmation match
+                if(arePasswordsMatching()) {
+                    //Hide hint if match
+                    $confirmPassword.next().hide();
+                } else {
+                    //else show hint 
+                    $confirmPassword.next().show();
+                }
+                }
+
+                function enableSubmitEvent() {
+                $("#submit").prop("disabled", !canSubmit());
+                }
+
+                //When event happens on password input
+                $password.focus(passwordEvent).keyup(passwordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
+
+                //When event happens on confirmation input
+                $confirmPassword.focus(confirmPasswordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
+
+                enableSubmitEvent();
+          </script>
+
+
+
+    {% endif %}
+    {% endblock %}
