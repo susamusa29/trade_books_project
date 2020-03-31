@@ -7,7 +7,7 @@ from tradebooks import views
 app_name = 'tradebooks'
 
 urlpatterns = [
-    path('', views.login, name='login'),
+    path('', views.index, name='index'),
     path('index/', views.index, name='index'),
     path('login/', views.user_login, name='login'),
     # maybe we can use slug for individual products
