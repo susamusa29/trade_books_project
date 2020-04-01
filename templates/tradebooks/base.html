@@ -157,13 +157,14 @@
                                                    href="{% url 'tradebooks:user' %}">
                                                     {{ user.username }}
                                                 </a>
+                                                <!--please stop removing logout reference i made it to work i wrote views two days ago-->
                                                 <!-- maybe not necessary -->
                                                 <!--<a class="dropdown-item"-->
                                                    <!--href="#">-->
                                                     <!--Edit Profile-->
                                                 <!--</a>-->
                                                 <a class="dropdown-item"
-                                                   href="#">
+                                                   href="{% url 'tradebooks:logout' %}">
                                                     Sign Out
                                                 </a>
                                             </div>
