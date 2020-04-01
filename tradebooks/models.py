@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -65,12 +66,17 @@ class Book(models.Model):
         default='GBP',
         blank=True
     )
+    slug = models.SlugField(unique=True)
 
 # Some foreign keys for the 1:N relationships
 # on_delete
 
     bookSold = models.ForeignKey(UserProfile, related_name = 'book_sellers',on_delete = models.CASCADE, null= True, blank=True)
     bookBought = models.ForeignKey(UserProfile, related_name = 'book_buyers',on_delete = models.CASCADE, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.bookName)
+        super(Book, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.bookName

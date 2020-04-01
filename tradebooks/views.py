@@ -7,7 +7,7 @@ author: Teoh Yee Hou (2471020t)
 # non-django
 from datetime import datetime
     #new one added because of registration form
-from tradebooks.forms import UserForm, UserProfileForm
+from tradebooks.forms import UserForm, UserProfileForm, BookForm
 
 # django
 
@@ -100,12 +100,20 @@ def register(request):
     
     return render(request, 'tradebooks/register.html', context = {'user_form': user_form, 'profile_form': profile_form,'registered': registered})
         
-
-
+#view to show listed products
+#maybe we need a view to list products?
+# def list_product(request):
 
 def product(request):
     """Product view."""
     return render(request, 'tradebooks/product.html')
+
+#adding a book functionality view
+@login_required
+def add_book(request):
+    form = BookForm()
+    #view to add books#
+    return render(request, 'tradebooks/add_boook.html', {'form':form})
 
 
 def user(request):
