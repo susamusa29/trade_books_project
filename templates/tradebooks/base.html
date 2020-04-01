@@ -21,61 +21,61 @@
 
 -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewpoints" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="keywords" content="book, textbook, used, new, marketplace, university, glasgow" />
-    <title>
-        Tradebooks -
-        {% block title_block %}
+        <meta charset="UTF-8">
+        <meta name="viewpoints" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="keywords" content="book, textbook, used, new, marketplace, university, glasgow" />
+        <title>
+            Tradebooks -
+            {% block title_block %}
+            {% endblock %}
+        </title>
+        <link rel="stylesheet" href="base.css">
+        <link rel="stylesheet"
+              href="stylesheet.css"
+              type="text/css"
+              charset="utf-8" />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!--
+            This is to enable other templates to add other css links., Stanislava
+        -->
+
+        {% block head %}
+
         {% endblock %}
-    </title>
-    <link rel="stylesheet" href="base.css">
-    <link rel="stylesheet"
-          href="stylesheet.css"
-          type="text/css"
-          charset="utf-8" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--
-        This is to enable other templates to add other css links., Stanislava
-    -->
 
-    {% block head %}
+        <!-- the footer css had a missing bracket, fixed it
+        Stanislava-->
 
-    {% endblock %}
+        <style>
+            .icon {
+            width:16px;
+            height:16px;
+            }
+            .logo {
+            width : 64px;
+            height : 64px;
+            }
+            span {
+            color:rgb(199,92,92);
+            }
+            header h1 {
+            color:rgb(119,179,212);
+            }
+            footer {
+            background-color : rgb(119,179,212);
+            /* this is so that the footer is always at the bottom */
+            position: relative;
+            left: 0;
+            right:0;
+            bottom: -300px;
+            background-color : rgb(119,179,212);
+            }
 
-    <!-- the footer css had a missing bracket, fixed it
-    Stanislava-->
-
-    <style>
-        .icon {
-        width:16px;
-        height:16px;
-        }
-        .logo {
-        width : 64px;
-        height : 64px;
-        }
-        span {
-        color:rgb(199,92,92);
-        }
-        header h1 {
-        color:rgb(119,179,212);
-        }
-        footer {
-        background-color : rgb(119,179,212);
-        /* this is so that the footer is always at the bottom */
-        position: relative;
-        left: 0;
-        right:0;
-        bottom: -300px;
-        background-color : rgb(119,179,212);
-        }
-
-    </style>
+        </style>
 
 </head>
     <body>
@@ -126,7 +126,7 @@
                                 </div>
 
                                 <div class="col-md-2 col-xs-12">
-                                    <a class="nav_link" href="search.html">
+                                    <a class="nav_link" href="{% url 'tradebooks:search' %}">
                                         Advanced Search
                                     </a>
                                 </div>
@@ -135,7 +135,7 @@
                                 <!-- login button -->
                                 <!-- this helps me update the login empty path page, Stanislava-->
                                 {% block content %}
-                                    {% if user.is_active %}
+                                    {% if user.logged_in %}
                                         <!-- show link to user page adn option to logout-->
                                         <div class="dropdown show">
                                             <a class="btn btn-secondary dropdown-toggle"
@@ -153,9 +153,8 @@
                                                    href="{% url 'tradebooks:user' %}">
                                                     user
                                                 </a>
-                                                <!--added the logout button-->
                                                 <a class="dropdown-item"
-                                                   href="{% url 'tradebooks:logout' %}">
+                                                   href="#">
                                                     Sign Out
                                                 </a>
                                             </div>
@@ -186,6 +185,7 @@
                                         </div>
                                     {% endif %}
                                 {% endblock content %}
+                                    <
                                 </div>
 
                             <!--</div>-->
@@ -206,7 +206,7 @@
                                 <a class="nav-link" href="{% url 'tradebooks:product' %}">Book</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="{% url 'tradebooks:about' %}">About</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link disabled" href="#">Others</a>
@@ -238,7 +238,7 @@
                     <div class="col-md-4 col-xs-12">
                         <h5> TRADEBOOKS </h5>
                         <ul>
-                            <li><a href="#"> About us </a></li>
+                            <li><a href="{% url 'tradebooks:about' %}"> About us </a></li>
                             <!-- link to facebook -->
                             <li>
                                 <a href="https://www.facebook.com/">
@@ -276,7 +276,7 @@
                         <ul>
                             <li><a href="#"> Help </a></li>
                             <li><a href="#"> Contact Us</a></li>
-                            <li><a href="#"> FAQ </a></li>
+                            <li><a href="{% url 'tradebooks:faq' %}"> FAQ </a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 col-xs-12">

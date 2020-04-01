@@ -17,7 +17,6 @@
 <!--
     This is where the login template will inherit the additional css
 -->
-
 {% block head %}
     <!-- Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
@@ -174,7 +173,6 @@ span.psw {
     Login
 {% endblock %}
 
-
 {% block body_block %}
 {% block header %}
 
@@ -232,19 +230,18 @@ span.psw {
 </script>
 <div id="id01" class="modal">
 
-  <form class="modal-content animate" id="login_form" method="post" action="{% url 'tradebooks:login' %}" enctype="multipart/form-data">
+  <form class="modal-content animate" action="/action_page.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="{% static 'images/Profile.jpg' %}" height="350" alt="Avatar" class="avatar">
     </div>
 
     <div class="container">
-      {% csrf_token %}
-      <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" required>
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
 
-      <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
 
       <button type="submit">Login</button>
       <label>

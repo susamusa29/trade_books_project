@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+
 # Create your models here.
 
 #The first model is the user model
@@ -31,12 +32,16 @@ class UserProfile(models.Model):
 
     #the date of a profile is an attribute that already exists in the user interface
 
+    # teoh: custom save:
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.user.username)
+        super(UserProfile, self).save(*args, **kwargs)
 
 
     def __str__(self):
         return self.user.username   # The second model will be the book model
 # Think of toString method for book, return will be the name but still authr will be needed
-# therefore, both should be included ? 
+# therefore, both should be included ?
 class Book(models.Model):
     BOOK_CODE_MAX_LENGTH = 120
     BOOK_NAME_MAX_LEBGTH = 100
@@ -66,17 +71,12 @@ class Book(models.Model):
         default='GBP',
         blank=True
     )
-    slug = models.SlugField(unique=True)
 
 # Some foreign keys for the 1:N relationships
 # on_delete
 
     bookSold = models.ForeignKey(UserProfile, related_name = 'book_sellers',on_delete = models.CASCADE, null= True, blank=True)
     bookBought = models.ForeignKey(UserProfile, related_name = 'book_buyers',on_delete = models.CASCADE, null=True, blank=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.bookName)
-        super(Book, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.bookName
