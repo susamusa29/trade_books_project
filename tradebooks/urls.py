@@ -5,6 +5,7 @@ note:
 # added the index view here
 # all good - From Stanislva
 changed '' to index instead of login as it makes more sense
+added search, about and faq
 
 author: Teoh Yee Hou (2471020t)
         Stanislava Dyakova (2390717d)
@@ -19,4 +20,7 @@ urlpatterns = [
     path('product/', views.product, name='product'),
     path('user/', views.user, name='user'),
     path('register/', views.register, name='register'),
+    path('search/', views.search, name='search'),
+    path('about/', views.about, name='about'),
+    path('faq/', views.faq, name='faq'),
 ]

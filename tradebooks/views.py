@@ -2,6 +2,7 @@
 
 note:
 formatted code, commented unused imports
+added search, faq and about
 
 author: Teoh Yee Hou (2471020t)
         Stanislava Dyakova (2390717d)
@@ -124,3 +125,18 @@ def add_book(request):
 def user(request):
     """User view."""
     return render(request, 'tradebooks/user.html')
+
+
+def search(request):
+    """Search view."""
+    return render(request, 'tradebooks/search.html')
+
+
+def about(request):
+    """About view."""
+    return render(request, 'tradebooks/about.html')
+
+
+def faq(request):
+    """FAQ view."""
+    return render(request, 'tradebooks/faq.html')

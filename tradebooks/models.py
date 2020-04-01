@@ -1,6 +1,17 @@
+"""Models.
+
+Note:
+added custom save for users(teoh) and books(Stanislava)
+
+author: Stanislava Dyakova (2390717d)
+        Teoh Yee Hou (2471020t)
+"""
+
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+
 
 # Create your models here.
 
@@ -31,12 +42,16 @@ class UserProfile(models.Model):
 
     #the date of a profile is an attribute that already exists in the user interface
 
+    # teoh: custom save:
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.user.username)
+        super(UserProfile, self).save(*args, **kwargs)
 
 
     def __str__(self):
         return self.user.username   # The second model will be the book model
 # Think of toString method for book, return will be the name but still authr will be needed
-# therefore, both should be included ? 
+# therefore, both should be included ?
 class Book(models.Model):
     BOOK_CODE_MAX_LENGTH = 120
     BOOK_NAME_MAX_LEBGTH = 100
