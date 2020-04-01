@@ -8,24 +8,18 @@ author: Teoh Yee Hou (2471020t)
 """
 
 # non-django
-<<<<<<< HEAD
 from datetime import datetime
     #new one added because of registration form
 from tradebooks.forms import UserForm, UserProfileForm, BookForm
-=======
-# from datetime import datetime
-# new one added because of registration form
-from tradebooks.forms import UserForm, UserProfileForm
->>>>>>> 994808b0e6bd35c488fa4cad311d147049698d0c
 
 # django
 
 from django.shortcuts import render
-# from django.shortcuts import redirect, render
-# from django.urls import reverse
-# from django.contrib.auth import authenticate, login, logout
-# from django.contrib.auth.decorators import login_required
-# from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 
 def index(request):
@@ -108,22 +102,12 @@ def register(request):
         # not HTTP POST
         user_form = UserForm()
         profile_form = UserProfileForm()
-<<<<<<< HEAD
     
     return render(request, 'tradebooks/register.html', context = {'user_form': user_form, 'profile_form': profile_form,'registered': registered})
         
 #view to show listed products
 #maybe we need a view to list products?
 # def list_product(request):
-=======
-
-    return render(request,
-                  'tradebooks/register.html',
-                  context={'user_form': user_form,
-                           'profile_form': profile_form,
-                           'registered': registered})
-
->>>>>>> 994808b0e6bd35c488fa4cad311d147049698d0c
 
 def product(request):
     """Product view."""
