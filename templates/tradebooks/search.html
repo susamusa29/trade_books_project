@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- advance search/ search query page
+note:
+may combine book and search
+
+todo:
+populate with books to search.
+remove searchbar when in this view.
+
+Author: Teoh Yee Hou (2471020t)
+Filename: search.html
+-->
+{% extends 'tradebooks/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Search
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+    <h1>Search</h1>
+    <div class="row" id="search">
+        <form class="form-inline"
+              method="POST" >
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="text"
+                       class="form-control"
+                       id="search"
+                       placeholder="Search...">
+            </div>
+            <button type="submit"
+                    class="btn btn-primary mb-2">
+                <i class = "fa fa-search text-white ml-3"
+                   aria-hidden = "true"></i></button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
