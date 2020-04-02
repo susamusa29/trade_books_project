@@ -27,7 +27,6 @@ def populate():
     # Creating the data
 
     books = [{'ISBN': '9780435910105',
-              'bookID': 1,
               'bookImage': 'book_images/openingSpaces.jpg',
               'bookName': "Opening Spaces: An Anthology of Contemporary African Women's Writing",
               'bookAuthor': "Yvonne Vera",
@@ -36,7 +35,6 @@ def populate():
               'bookDescription': "slightly used, but in good condition"
               },
              {'ISBN': '186914001X',
-              'bookID': 2,
               'bookImage': 'book_images/mips.png',
               'bookName': "MIPS Assembly Language Programming using QtSpim",
               'bookAuthor': "Ed Jorgensen",
@@ -47,7 +45,6 @@ def populate():
                 MIPS assembly language programming. The text assumes usage of the QtSpim simulator."
               },
              {'ISBN': '9781558614062',
-              'bookID': 3,
               'bookImage': 'book_images/godint-wholebook.jpg',
               'bookName': "God Created the Integers",
               'bookAuthor': "Hawking, Stephen",
@@ -56,7 +53,6 @@ def populate():
               'bookDescription': "slightly used, but in good condition. Book about Maths."
               },
              {'ISBN': '1594606471',
-              'bookID': 4,
               'bookImage': 'book_images/indianstates.jpg',
               'bookName': "Integration of the Indian States",
               'bookAuthor': "Menon, V P",
@@ -65,7 +61,6 @@ def populate():
               'bookDescription': "not used, brand new"
               },
              {'ISBN': '0869809180',
-              'bookID': 5,
               'bookImage': 'book_images/wealthnations.jpg',
               'bookName': "Wealth of Nations, The",
               'bookAuthor': "Smith, Adam",
@@ -74,7 +69,6 @@ def populate():
               'bookDescription': "slightly used, but in good condition. The cover page is missing."
               },
              {'ISBN': '006059537X',
-              'bookID': 6,
               'bookImage': 'book_images/primitive.jpg',
               'bookName': "Return of the Primitive",
               'bookAuthor': "Rand, Ayn",
@@ -83,7 +77,6 @@ def populate():
               'bookDescription': "slightly used, but in good condition"
               },
              {'ISBN': '0547241607',
-              'bookID': 7,
               'bookImage': 'book_images/datastr.jpg',
               'bookName': "Data Structures Using C & C++",
               'bookAuthor': "Tanenbaum, Andrew",
@@ -92,7 +85,6 @@ def populate():
               'bookDescription': "slightly used, but in good condition"
               },
              {'ISBN': '9780939691029',
-              'bookID': 8,
               'bookImage': 'book_images/trial.jpg',
               'bookName': "Trial, The",
               'bookAuthor': "Kafka, Frank",
@@ -101,7 +93,6 @@ def populate():
               'bookDescription': "in good condition"
               },
              {'ISBN': '044657922X',
-              'bookID': 9,
               'bookImage': 'book_images/pyhsicstoa.jpg',
               'bookName': "Tao of Physics, The",
               'bookAuthor': "Capra, Fritjof",
@@ -110,7 +101,6 @@ def populate():
               'bookDescription': "slightly used, but in good condition"
               },
              {'ISBN': '0939691027',
-              'bookID': 10,
               'bookImage': 'book_images/disc.jpg',
               'bookName': "Age of Discontuinity, The",
               'bookAuthor': "Drucker, Peter",

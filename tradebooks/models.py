@@ -80,7 +80,7 @@ class Book(models.Model):
 
 #   we will be autogenerating a primary key
 #   (However, Django offers the same automatic ID, so probably unnecesary)
-    bookID = models.IntegerField(primary_key = True)
+    # bookID = models.IntegerField(primary_key = True)
 
 # Remark :
 # maybe suitable for database to add all courses for the search API

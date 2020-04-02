@@ -20,4 +20,4 @@ class BookForm(forms.ModelForm):
     class Meta:
         # Provide an association between the ModelForm and a model
         model = Book
-        fields = ('bookName', 'bookImage', 'bookAuthor', 'course', 'year', 'bookDescription', 'price', 'currency', 'slug',)
+        fields = ('bookName', 'bookImage', 'bookAuthor', 'course', 'year', 'bookDescription', 'price', 'currency', 'slug', 'bookISBN')

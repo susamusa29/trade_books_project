@@ -93,6 +93,7 @@ def register(request):
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
 
+
             # save UserProfile model instance
             profile.save()
 
@@ -119,9 +120,36 @@ def product(request):
 #adding a book functionality view
 @login_required
 def add_book(request):
-    form = BookForm()
-    #view to add books#
-    return render(request, 'tradebooks/add_boook.html', {'form':form})
+    #value to tell the template whether addition is successful
+    added = False
+
+    if(request == 'POST'):
+        #creating a form object
+        #taking information from the form information
+        add_form = BookForm(request.POST)
+
+        if(add_form.is_valid()):
+
+            #save form to database
+            book = add_form.save(commit=False)
+
+            if 'bookImage' in request.FILES:
+                book.bookImage = request.FILES['bookImage']
+
+            book.save()
+
+            added = True
+        else:
+                print(add_form.errors)
+    else:
+        add_form=BookForm()
+
+    return render(request, 'tradebooks/add.html', context = {'add_form':add_form, 'added': added})
+
+
+
+    #view to add books
+    return render(request, 'tradebooks/add_book.html')
 
 def show_listings(request, listing_name_slug):
     """Show all books/listing view."""
