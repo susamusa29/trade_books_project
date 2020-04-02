@@ -179,7 +179,14 @@ def populate():
                  "bookName": "MIPS Assembly Language Programming using QtSpim",
                  "description": "slightly used, but in good condition.",
                  "price": 69.42,
-                 }
+                 },
+                {"user": userlist[0],
+                 "bookName": "God Created the Integers",
+                 "description": "slightly used, but in good condition. Book about Maths.",
+                 "price": 42.69,
+                 },
+
+
                 ]
 
     # takes all the books and adds them.

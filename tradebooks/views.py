@@ -129,7 +129,7 @@ def show_listings(request, listing_name_slug):
     try:
 
         listing = Listing.objects.get(slug=listing_name_slug)
-        book = Book.objects.get(slug=listing_name_slug)
+        book = Book.objects.get(bookName=listing.book)
         contextDict["listing"] = listing
         contextDict["book"] = book
 
@@ -160,7 +160,10 @@ def user(request):
 
 
 
-    return render(request, 'tradebooks/user.html')
+    return render(request, 'tradebooks/user.html', context={
+        "listings": Listing.objects.all(),
+        "books": Book.objects.all(),
+    })
 
 
 

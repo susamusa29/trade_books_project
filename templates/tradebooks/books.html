@@ -27,12 +27,12 @@ Filename: books.html
     {% if listings %}
         {% for listing in listings %}
             {% for book in books %}
-                {% if listing.slug == book.slug %}
+                {% if listing.book == book.bookName %}
                     <div class="row">
                         <div class="col-md-3 col-sm-4 col-xs-12 px-2">
                             <a href="{% url 'tradebooks:product' listing.slug %}">
                                 <img src="{{ MEDIA_URL}}{{ book.bookImage }}"
-                                     alt="Listing image"
+                                     alt="{{ listing.book }}"
                                      class="img-reactive listing-img"/>
                             </a>
                         </div>

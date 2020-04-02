@@ -144,7 +144,7 @@ class Listing(models.Model):
     slug = models.SlugField(unique=True, default="")
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.book)
+        self.slug = slugify("{}{}".format(self.book, self.user))
         super(Listing, self).save(*args, **kwargs)
 
     def __str__(self):
