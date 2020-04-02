@@ -22,8 +22,9 @@ urlpatterns = [
     path('product/<slug:listing_name_slug>', views.show_listings, name='product'),
     # all books/listing page
     path('books/', views.books, name='books'),
-
     path('user/', views.user, name='user'),
+     # will add a book url
+    path('user/add', views.add_book, name='add'),
     path('register/', views.register, name='register'),
     path('search/', views.search, name='search'),
     path('about/', views.about, name='about'),

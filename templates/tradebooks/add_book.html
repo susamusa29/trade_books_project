@@ -1,0 +1,108 @@
+<!--
+    Add_Book Template 
+    Author: Stanislava Dyakova
+    StudentID:2390717D
+-->
+{% extends 'tradebooks/base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block head %}
+<!-- Custom CSS-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/add.css' %}">
+{% endblock %}
+
+{% block body_block%}
+{% block header %}
+
+{% endblock %}
+{% block content %}
+{% endblock %}
+
+<!--if successful-->
+{% if added %}
+<div class ="text">
+Thank you your book has been added. Please press <a href="{% url 'tradebooks:index' %}">here.</a>
+</div>
+{%else%}
+<!-- Labels for the form -->
+<form id="add_form" method="post" action="{% url 'tradebooks:add' %}" enctype="multipart/form-data">
+{% csrf_token %}
+<h2>Add your Book</h2>
+        <p>
+            <label for="bookISBN" class="floatLabel">Book ISBN:</label>
+            <input id="bookISBN" name="bookISBN" type="text">
+        </p>
+
+        <p>
+            <label for="bookName" class="floatLabel">Book Name:</label>
+            <input id="bookName" name="bookName" type="text">
+        </p>
+
+        <p>
+            <label for="bookAuthor" class="floatLabel">Author:</label>
+            <input id="bookAuthor" name="last_name" type="text">
+        </p>
+
+      <p>
+          <label for="course" class="floatLabel">Course suitability:</label>
+          <input id="course" name="email" type="text">
+      </p> 
+
+      <p>
+          <label for="bookDescription" class="floatLabel">Password:</label>
+          <input id="bookDescription" name="password" type="text">
+      </p>
+
+      <p>
+        <label for="price" class="floatLabel">Price:</label>
+        <input id="price" name="confirm_password" type="number">
+    </p>
+
+    <p>
+        <label for="currency" class="floatLabel">Currency(Please type it with 3 Capital letters):</label>
+        <input id="currency" name="currency" type="text">
+    </p>
+
+    <p>
+        <label for="studentID" class="floatLabel">StudentID:</label>
+        <input id="studentID" name="studentID" type="text">
+    </p>
+
+    <p>
+        <label for="courseMain" class="floatLabel">Course:</label>
+        <input id="courseMain" name="courseMain" type="text">
+    </p>
+
+    <p>
+        <label for="year" class="floatLabel">Year of Study(Suitability):</label>
+        <input id="year" name="year" type="number">
+    </p>
+
+    <p>
+        <label for="bookImage" class="floatLabel">Choose Profile Picture:</label>
+        <input type="file" name="bookImage" accept="image/*" />
+    </p>
+
+      <p>
+          <input type="submit" value="Add my Book" id="submit">
+      </p> 
+  </form>
+  <script>
+
+    function canSubmit() {
+    return true;
+    }
+
+
+        function enableSubmitEvent() {
+        $("#submit").prop("disabled", !canSubmit());
+        }
+
+        enableSubmitEvent();
+  </script>
+
+
+
+{% endif %}
+{% endblock %}
