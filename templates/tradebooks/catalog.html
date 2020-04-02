@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- catalog page. should have all the books available
+
+note:
+
+todo:
+
+Author: Teoh Yee Hou (2471020t)
+Filename: catalog.html
+-->
+{% extends 'tradebooks/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Catalog
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+    <h4 class="display-4">Catalog
+    <small class="text-muted">- books for reference</small></h4><br/>
+    <p>Some of these books may not longer be listed but are still kept
+    here for reference</p>
+    <hr/>
+    {% if books %}
+        {% for book in books %}
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12 px-2">
+                        <img src="{{ MEDIA_URL}}{{ book.bookImage }}"
+                             alt="{{ book.bookName }}"
+                             class="img-reactive listing-img"/>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12 px-2">
+                    <h4 class="display-4">{{ book.bookName }}</h4>
+                    <h4>Author: {{ book.bookAuthor }}</h4>
+                    <h5>ISBN: {{ book.bookISBN }}</h5>
+                    <p>
+                        Course Of Study: {{ book.course }}<br/>
+                        Year Of Study: {{ book.year }} <br/>
+                        Info: {{ book.bookDescription }}<br/>
+
+
+                    </p>
+
+                </div>
+            </div>
+            <hr/>
+        {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}
