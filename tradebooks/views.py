@@ -166,6 +166,13 @@ def user(request):
     })
 
 
+def catalog(request):
+    """Catalog view."""
+
+    return render(request, 'tradebooks/catalog.html', context={
+        "books": Book.objects.order_by("bookName")
+    })
+
 
 
 def search(request):
