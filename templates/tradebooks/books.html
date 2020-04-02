@@ -9,6 +9,7 @@ todo:
 optimize reqctivity.
 remove hardcoded pic.
 add links to product page.
+add anchor to img so it leads to the product page.
 
 Author: Teoh Yee Hou (2471020t)
 Filename: books.html
@@ -34,9 +35,9 @@ Filename: books.html
                          class="img-reactive listing-img"/>
                 </div>
                 <div class="col-md-9 col-sm-8 col-xs-12 px-2">
-                    <h3><a href="#">{{ listing.book }}</a></h3>
+                    <h3><a href="{% url 'tradebooks:product' listing.slug %}">{{ listing.book }}</a></h3>
                     <h5>Price: £{{ listing.price }}</h5>
-                    <p>{{ listing.info }}</p>
+                    <p>Info: {{ listing.info }}</p>
                 </div>
             </div>
             <hr/>

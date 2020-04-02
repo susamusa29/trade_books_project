@@ -19,7 +19,7 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
 
     # maybe we can use slug for individual products
-    path('product/<slug: listing_name_slug>', views.product, name='product'),
+    path('product/<slug:listing_name_slug>', views.show_listings, name='product'),
     # all books/listing page
     path('books/', views.books, name='books'),
 

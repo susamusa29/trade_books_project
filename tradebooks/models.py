@@ -141,6 +141,8 @@ class Listing(models.Model):
     # book = models.ForeignKey(Book, on_delete=models.CASCADE)
     book = models.CharField(max_length=128)
 
+    slug = models.SlugField(unique=True, default="")
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.book)
         super(Listing, self).save(*args, **kwargs)

@@ -133,7 +133,7 @@ def show_listings(request, listing_name_slug):
     except Listing.DoesNotExist:
         contextDict["listing"] = None
 
-    return render(request, 'tradebooks/books.html', context=contextDict)
+    return render(request, 'tradebooks/product.html', context=contextDict)
 
 #
 def books(request):

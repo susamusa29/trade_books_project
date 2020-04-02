@@ -9,11 +9,13 @@
     added purchase button
     purchase for logged in users only
 
+    individual books page right now. need to change population script to try
+    out pictures using books object.
+
     todo:
     change color
-    remove hardcoded pics and fields
+    remove hardcoded pic
     custom css
-    change according to product name (slugs) filename as well.
 
 
     Author: Teoh Yee Hou (2471020t)
@@ -53,16 +55,16 @@
             <!-- user details and book details -->
             <div class="col-md-4 col-xs-12" style="margin-top:2em">
 
-                <p class="lead"><img src="https://i.kym-cdn.com/photos/images/newsfeed/001/505/718/136.jpg"
+                <p class="lead"><img src="{{ MEDIA_URL}}{{ listing.user.user.userprofile.picture }}"
                                        alg="profilePic"
                                        class="rounded-circle"
                                        width="40"
-                                       height="40"> Name </p>
+                                       height="40"> {{ listing.user }} </p>
 
 
                 <br/>
                 <p class="lead"> {{ listing.book }} </p>
-                <p> {{ listing.price }} </p>
+                <p> Price: £{{ listing.price }} </p>
             </div>
             <!-- contact seller -->
             {% if user.is_authenticated %}
