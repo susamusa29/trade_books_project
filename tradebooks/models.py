@@ -87,7 +87,7 @@ class Book(models.Model):
 
 # Additional attributes
     bookName = models.CharField(max_length = BOOK_NAME_MAX_LEBGTH)
-    bookImage = models.ImageField(upload_to='profile_images', blank=True)
+    bookImage = models.ImageField(upload_to='book_images', blank=True)
     bookAuthor = models.CharField(max_length=AUTHOR_NAME_MAX_LENGTH)
     course = models.CharField(max_length=COURSE_NAME_MAX_LENGTH)
     year=models.IntegerField(default=1)

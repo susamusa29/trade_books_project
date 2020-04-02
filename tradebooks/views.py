@@ -13,7 +13,7 @@ from datetime import datetime
     #new one added because of registration form
 from tradebooks.forms import UserForm, UserProfileForm, BookForm
 from tradebooks.models import UserProfile
-from tradebooks.models import Listing
+from tradebooks.models import Listing, Book
 # django
 
 from django.shortcuts import render
@@ -127,18 +127,26 @@ def show_listings(request, listing_name_slug):
     """Show all books/listing view."""
     contextDict = {}
     try:
+
         listing = Listing.objects.get(slug=listing_name_slug)
+        book = Book.objects.get(slug=listing_name_slug)
         contextDict["listing"] = listing
+        contextDict["book"] = book
+
+
 
     except Listing.DoesNotExist:
         contextDict["listing"] = None
+        contextDict["book"] = None
 
     return render(request, 'tradebooks/product.html', context=contextDict)
 
 #
 def books(request):
+
     return render(request, 'tradebooks/books.html', context={
         "listings": Listing.objects.all(),
+        "books": Book.objects.all(),
     })
 
 

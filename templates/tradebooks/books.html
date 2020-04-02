@@ -4,12 +4,10 @@
 note:
 listings reactivity is wonky, will overlap pic before snapping to small
 view
+added individual listings pics and links. added anchor
 
 todo:
 optimize reqctivity.
-remove hardcoded pic.
-add links to product page.
-add anchor to img so it leads to the product page.
 
 Author: Teoh Yee Hou (2471020t)
 Filename: books.html
@@ -28,19 +26,29 @@ Filename: books.html
     <hr/>
     {% if listings %}
         {% for listing in listings %}
-            <div class="row">
-                <div class="col-md-3 col-sm-4 col-xs-12 px-2">
-                    <img src="https://d2sofvawe08yqg.cloudfront.net/tangowithdjango2/hero2x?1580989954"
-                         alt="Listing image"
-                         class="img-reactive listing-img"/>
-                </div>
-                <div class="col-md-9 col-sm-8 col-xs-12 px-2">
-                    <h3><a href="{% url 'tradebooks:product' listing.slug %}">{{ listing.book }}</a></h3>
-                    <h5>Price: £{{ listing.price }}</h5>
-                    <p>Info: {{ listing.info }}</p>
-                </div>
-            </div>
-            <hr/>
+            {% for book in books %}
+                {% if listing.slug == book.slug %}
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4 col-xs-12 px-2">
+                            <a href="{% url 'tradebooks:product' listing.slug %}">
+                                <img src="{{ MEDIA_URL}}{{ book.bookImage }}"
+                                     alt="Listing image"
+                                     class="img-reactive listing-img"/>
+                            </a>
+                        </div>
+                        <div class="col-md-9 col-sm-8 col-xs-12 px-2">
+                            <h3>
+                                <a href="{% url 'tradebooks:product' listing.slug %}">
+                                    {{ listing.book }}
+                                </a>
+                            </h3>
+                            <h5>Price: £{{ listing.price }}</h5>
+                            <p>Info: {{ listing.info }}</p>
+                        </div>
+                    </div>
+                    <hr/>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
     {% endif %}
 </div>
