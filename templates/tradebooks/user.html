@@ -57,7 +57,10 @@
                         <a class = "nav-link" href = "#"> Listings </a>
                     </div>
                     <div class = "col-auto">
-                        <a class = "nav-link" href = "#"> Edit profile </a>
+                        <a class = "nav-link" href = "{% url 'tradebooks:edit_profile' %}"> Edit profile </a>
+                    </div>
+                    <div class = "col-auto">
+                        <a class = "nav-link" href = "{% url 'tradebooks:change-password' %}"> Change Password </a>
                     </div>
                 </nav>
                 <div class=" container">

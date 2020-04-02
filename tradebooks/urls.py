@@ -35,7 +35,10 @@ urlpatterns = [
     path('catalog/', views.catalog, name='catalog'),
     path('search_result/', views.search_result, name='search_result'),
     path('contactus/', views.contactus, name='contactus'),
-    path('help/', views.help, name='help')
+    path('help/', views.help, name='help'),
     path('email/', views.button, name='api'),
     path('external/', views.external, name='external'),
+    path('user/edit/', views.edit_profile, name='edit_profile'),
+    path('edit/', views.edit_profile, name='edit'),
+    path('change-password/', views.change_password, name="change-password")
 ]

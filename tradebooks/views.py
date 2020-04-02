@@ -12,9 +12,10 @@ author: Teoh Yee Hou (2471020t)
 # non-django
 from datetime import datetime
     #new one added because of registration form
-from tradebooks.forms import UserForm, UserProfileForm, BookForm, HomeForm
+from tradebooks.forms import UserForm, UserProfileForm, BookForm, HomeForm, UserEditForm
 from tradebooks.models import UserProfile
 from tradebooks.models import Listing, Book
+
 # django
 
 from django.shortcuts import render
@@ -33,6 +34,9 @@ from django.views.generic import TemplateView
 from email.message import EmailMessage
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
 
 def index(request):
     """Index view.
@@ -205,7 +209,37 @@ def user(request):
         "listings": Listing.objects.all(),
         "books": Book.objects.all(),
     })
+#code to edit a profile
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=request.user)
 
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('tradebooks:user'))
+    else:
+        form = UserEditForm(instance=request.user)
+        args = {'form':form}
+
+    return render(request, 'tradebooks/edit_profile.html', args)
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect(reverse('tradebooks:user'))
+        else:
+            return redirect('tradebooks:index')
+    else:
+        form = PasswordChangeForm(user=request.user)
+        args = {'form':form}
+
+    return render(request, 'tradebooks/change_password.html', args)
 
 def catalog(request):
     """Catalog view."""

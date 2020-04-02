@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from tradebooks.models import UserProfile, Book, Post
+from tradebooks.models import UserProfile, Book,Post
+from django.contrib.auth.forms import UserChangeForm
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -33,3 +34,8 @@ class HomeForm(forms.ModelForm):
         # Provide an association between the ModelForm and a model
         model = Post
         fields = ('post',)
+
+class UserEditForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'password')
