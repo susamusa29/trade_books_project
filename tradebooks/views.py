@@ -56,7 +56,7 @@ def user_login(request):
         else:
             #wrong details
             print(f"Invalid login details: {username}, {password}")
-            return render (request, 'index.html')
+            return render (request, 'tradebooks/index.html')
     else:
         return render(request,'tradebooks/login.html')
 

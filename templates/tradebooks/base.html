@@ -138,7 +138,7 @@
                                 <!-- login button -->
                                 <!-- this helps me update the login empty path page, Stanislava-->
                                 {% block content %}
-                                    {% if user.is_active %}
+                                    {% if user.is_authenticated %}
                                         <!-- show link to user page adn option to logout-->
                                         <div class="dropdown show">
                                             <a class="btn btn-secondary dropdown-toggle"
