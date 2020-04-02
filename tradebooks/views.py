@@ -13,7 +13,7 @@ from datetime import datetime
     #new one added because of registration form
 from tradebooks.forms import UserForm, UserProfileForm, BookForm
 from tradebooks.models import UserProfile
-
+from tradebooks.models import Listing
 # django
 
 from django.shortcuts import render
@@ -113,6 +113,7 @@ def register(request):
 
 def product(request):
     """Product view."""
+
     return render(request, 'tradebooks/product.html')
 
 #adding a book functionality view
@@ -122,10 +123,30 @@ def add_book(request):
     #view to add books#
     return render(request, 'tradebooks/add_boook.html', {'form':form})
 
+def showlisting(request, listing_name_slug):
+    """Show listing view."""
+    contextDict = {}
+    try:
+        listing = Listing.objects.get(slug=listing_name_slug)
+        contextDict["listing"] = listing
+
+    except Listing.DoesNotExist:
+        contextDict["listing"] = None
+
+    return render(request, 'tradebooks/product.html', context=contextDict)
+
 
 def user(request):
     """User view."""
+
+    # context_dict = {}
+    #
+    # showlisting(context_dict, listing_name_slug)
+
+
+
     return render(request, 'tradebooks/user.html')
+
 
 
 
