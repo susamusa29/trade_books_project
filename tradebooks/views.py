@@ -206,6 +206,13 @@ def catalog(request):
     })
 
 
+def help(request):
+    return render(request, 'tradebooks/help.html')
+
+
+def contactus(request):
+    return render(request, 'tradebooks/contactus.html')
+
 
 def search(request):
     """Search view."""
