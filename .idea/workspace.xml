@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d866e963-2004-43cb-8a5a-23034b720875" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/tradebooks/books.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tradebooks/books.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tradebooks/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tradebooks/base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,24 +53,24 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="29" />
-          <entry key="py" value="22" />
+          <entry key="py" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="29" />
-          <entry key="Python" value="22" />
+          <entry key="Python" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="6644" />
+          <entry key="html" value="6807" />
           <entry key="py" value="2076" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="6644" />
+          <entry key="HTML" value="6807" />
           <entry key="Python" value="2076" />
         </counts>
       </usages-collector>
@@ -112,11 +112,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/tradebooks/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="36" column="105" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="105" />
+            <state relative-caret-position="366">
+              <caret line="241" column="98" selection-start-line="241" selection-start-column="98" selection-end-line="241" selection-end-column="98" />
             </state>
           </provider>
         </entry>
@@ -150,8 +150,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/tradebooks/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
+            <state relative-caret-position="1138">
               <caret line="83" column="117" selection-start-line="83" selection-start-column="117" selection-end-line="83" selection-end-column="117" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tradebooks/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -194,7 +206,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trade_books_project/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="441">
@@ -239,17 +251,17 @@
         <option value="$PROJECT_DIR$/templates/tradebooks/faq.html" />
         <option value="$PROJECT_DIR$/tradebooks/urls.py" />
         <option value="$PROJECT_DIR$/tradebooks/testquery.py" />
-        <option value="$PROJECT_DIR$/templates/tradebooks/base.html" />
         <option value="$PROJECT_DIR$/templates/tradebooks/product.html" />
         <option value="$PROJECT_DIR$/populate_tradebooks.py" />
         <option value="$PROJECT_DIR$/tradebooks/models.py" />
         <option value="$PROJECT_DIR$/tradebooks/views.py" />
         <option value="$PROJECT_DIR$/templates/tradebooks/user.html" />
         <option value="$PROJECT_DIR$/templates/tradebooks/books.html" />
+        <option value="$PROJECT_DIR$/templates/tradebooks/base.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1057" />
@@ -428,16 +440,6 @@
     <entry file="file://$PROJECT_DIR$/templates/tradebooks/add_book.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tradebooks/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tradebooks/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -459,13 +461,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/trade_books_project/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/tradebooks/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="36" column="105" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="105" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tradebooks/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -514,13 +509,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/tradebooks/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="83" column="117" selection-start-line="83" selection-start-column="117" selection-end-line="83" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/tradebooks/product.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -536,6 +524,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tradebooks/books.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="56" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/trade_books_project/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
@@ -543,10 +538,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/tradebooks/books.html">
+    <entry file="file://$PROJECT_DIR$/templates/tradebooks/user.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="56" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="56" />
+        <state relative-caret-position="1138">
+          <caret line="83" column="117" selection-start-line="83" selection-start-column="117" selection-end-line="83" selection-end-column="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tradebooks/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tradebooks/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="241" column="98" selection-start-line="241" selection-start-column="98" selection-end-line="241" selection-end-column="98" />
         </state>
       </provider>
     </entry>

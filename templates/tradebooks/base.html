@@ -186,13 +186,13 @@
                                                data-toggle="dropdown"
                                                aria-haspoppup="true"
                                                aria-expanded="false"
-                                               href="itanimulli.com">
+                                               href="#">
                                                 Sign up or Login
                                             </a>
                                             <div class="dropdown-menu"
                                                  aria-labelledby="userDropdown">
                                                 <a class="dropdown-item"
-                                                   href="{% url 'tradebooks:login' %}">
+                                                   href="{% url 'tradebooks:register' %}">
                                                     Sign Up
                                                 </a>
                                                 <a class="dropdown-item"
@@ -221,11 +221,37 @@
                                 <a class="nav-link" href="{% url 'tradebooks:index' %}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'tradebooks:books' %}">All Books</a>
+                                <a class="nav-link" href="{% url 'tradebooks:books' %}">All Books/Listings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Catalog</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'tradebooks:about' %}">About</a>
                             </li>
+                            <div class="dropdown show">
+                                            <a class="btn btn-secondary dropdown-toggle"
+                                               role="button"
+                                               id="userDropdown"
+                                               data-toggle="dropdown"
+                                               aria-haspoppup="true"
+                                               aria-expanded="false"
+                                               href="#">
+                                                categories
+                                            </a>
+                                            <!-- currently these but will change to categories -->
+                                            <div class="dropdown-menu"
+                                                 aria-labelledby="userDropdown">
+                                                <a class="dropdown-item"
+                                                   href="{% url 'tradebooks:login' %}">
+                                                    Sign Up
+                                                </a>
+                                                <a class="dropdown-item"
+                                                   href="{% url 'tradebooks:login' %}">
+                                                    Login
+                                                </a>
+                                            </div>
+                                        </div>
                             <li class="nav-item">
                                 <a class="nav-link disabled" href="#">Others</a>
                             </li>
