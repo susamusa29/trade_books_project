@@ -1,5 +1,7 @@
 from django.urls import path
 from tradebooks import views
+from django.conf.urls.static import static
+from django.contrib import admin
 """
 note:
 # added the index view here
@@ -9,6 +11,7 @@ added search, about and faq
 
 author: Teoh Yee Hou (2471020t)
         Stanislava Dyakova (2390717d)
+        Abrar Haroon
 """
 app_name = 'tradebooks'
 
@@ -33,4 +36,6 @@ urlpatterns = [
     path('search_result/', views.search_result, name='search_result'),
     path('contactus/', views.contactus, name='contactus'),
     path('help/', views.help, name='help')
+    path('email/', views.button, name='api'),
+    path('external/', views.external, name='external'),
 ]
