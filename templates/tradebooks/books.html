@@ -42,8 +42,10 @@ Filename: books.html
                                     {{ listing.book }}
                                 </a>
                             </h3>
-                            <h5>Price: £{{ listing.price }}</h5>
+                            <h4>Price: £{{ listing.price }}</h4>
+                            <h5>Seller: {{ listing.user }}</h5>
                             <p>Info: {{ listing.info }}</p>
+
                         </div>
                     </div>
                     <hr/>
