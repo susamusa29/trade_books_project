@@ -12,6 +12,7 @@ author: Teoh Yee Hou (2471020t)
 from datetime import datetime
     #new one added because of registration form
 from tradebooks.forms import UserForm, UserProfileForm, BookForm
+from tradebooks.models import UserProfile
 
 # django
 
@@ -124,7 +125,10 @@ def add_book(request):
 
 def user(request):
     """User view."""
-    return render(request, 'tradebooks/user.html')
+    return render(request, 'tradebooks/user.html', context={"user":request.user, "userProfile":
+        UserProfile.objects.filter(user=request.user)
+        })
+
 
 
 def search(request):

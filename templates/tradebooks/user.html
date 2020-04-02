@@ -4,6 +4,7 @@
 
     note:
     will get the color right later
+    change to specific user.
 
     todo:
     change color
@@ -30,7 +31,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    User
+    {{ user.username }}
 {% endblock %}
 
 {% block body_block %}
@@ -43,8 +44,10 @@
                          alt = "profilePic"
                          class = "img-thumbnail">
                 </div>
-                <p>Name</p>
-                <p>ID</p>
+                <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+                <!-- not working -->
+                <p>Username: {{ user.username }}</p>
+                <p>ID: {{ userProfile.studentID }}</p>
             </div>
 
             <div class = "col-md-10 col-sm-5 col-xs-12">

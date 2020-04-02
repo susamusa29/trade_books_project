@@ -1,10 +1,21 @@
+"""Model registration on admin site.
+
+Note:
+added listing, condensed imports to a single line (Teoh)
+
+author: Stanislava Dyakova (2390717d)
+        Teoh Yee Hou (2471020t)
+"""
+
 from django.contrib import admin
-from tradebooks.models import UserProfile
-from tradebooks.models import Book, Category
-from tradebooks.models import Payment
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name',)}
+from tradebooks.models import UserProfile, Book, Payment, Listing
+
+# commented out some stuff for code to work for now.
+# from tradebooks.models import Category
+#
+# class CategoryAdmin(admin.ModelAdmin):
+#     list_display = ['name', 'slug']
+#     prepopulated_fields = {'slug': ('name',)}
 
 class BookAdmin(admin.ModelAdmin):
     # list_filter = ['category']
@@ -14,5 +25,8 @@ class BookAdmin(admin.ModelAdmin):
 
 admin.site.register(UserProfile)
 # admin.site.register(Book, BookAdmin, CategoryAdmin)
-admin.site.register(Book, BookAdmin, CategoryAdmin)
+admin.site.register(Book, BookAdmin)
+# commented out this for code to work for now(teoh)
+# admin.site.register(Book, BookAdmin, CategoryAdmin)
 admin.site.register(Payment)
+admin.site.register(Listing)

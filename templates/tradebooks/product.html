@@ -7,6 +7,7 @@
     note:
     will get the color right later
     added purchase button
+    purchase for logged in users only
 
     todo:
     change color
@@ -64,6 +65,7 @@
                 <p> free </p>
             </div>
             <!-- contact seller -->
+            {% if user.is_authenticated %}
             <div class="col-md-4 col-xs-12" style="margin-top:2em">
                  <a href="mailto:2471020t@student.gla.ac.uk?subject=Interested%20in%20your%20*bookname*&body=book%3A%20Tango%20With%20Django%202%0D%0Aisbn%3A%2042069%0D%0Aprice%3A%20free"
                     target="_top"
@@ -76,10 +78,15 @@
                      Purchase This!
                  </a>
             </div>
+            {% else %}
+            <div class="col-md-4 col-xs-12" style="margin-top:2em">
+                <h5 class="display-5">Please log in to contact or purchase.</h5>
+            </div>
+            {% endif %}
         </div>
         <div class="row" style="margin-top:2em">
             <div class="col">
-                <h2 class="header-2">Info <br/></h2>
+                <h2 class="display-2">Info <br/></h2>
                 <hr/>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

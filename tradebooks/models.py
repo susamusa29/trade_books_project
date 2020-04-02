@@ -2,6 +2,7 @@
 
 Note:
 added custom save for users(teoh) and books(Stanislava)
+added listing
 
 author: Stanislava Dyakova (2390717d)
         Teoh Yee Hou (2471020t)
@@ -97,7 +98,7 @@ class Book(models.Model):
         default='GBP',
         blank=True
     )
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, default='')
     # category = models.ForeignKey(Category, related_name='books')
 
 # Some foreign keys for the 1:N relationships
@@ -132,4 +133,17 @@ class Payment(models.Model):
     book_bought = models.OneToOneField(Book, related_name = 'book_bought', on_delete = models.CASCADE, default = None)
 
 
+# teoh's addition
+class Listing(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    info = models.CharField(max_length=3000, default="", blank=True)
+    price = models.IntegerField(default=0)
+    # book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.CharField(max_length=128)
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.book)
+        super(Listing, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.book

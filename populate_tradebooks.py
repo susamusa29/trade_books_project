@@ -3,6 +3,9 @@
 Note:
 added population for user(Teoh)
 
+todo:
+polish population script
+
 author: Stanislava Dyakova (2390717d)
         Teoh Yee Hou (2471020t)
 
@@ -15,7 +18,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trade_books_project.settings')
 import django
 
 django.setup()
-from tradebooks.models import Book, UserProfile, Payment
+from tradebooks.models import Book, UserProfile, Payment, Listing
 
 from django.contrib.auth.models import User
 
@@ -148,6 +151,29 @@ def populate():
               "year": "4"},
              ]
 
+    userlist = [add_user(u['username'],
+                 u['studentNumber'],
+                 u['firstName'],
+                 u['lastName'],
+                 u['email'],
+                 u['profilePicture'],
+                 u['courseMain'],
+                 u['year'], ) for u in users]
+
+    booklist = [add_book(b['bookID'],
+                 b['bookImage'],
+                 b['bookName'],
+                 b['bookAuthor'],
+                 b['course'],
+                 b['year'],
+                 b['bookDescription'],
+                 b['ISBN']) for b in books]
+    listings = [{"user":userlist[3],
+                "bookName":"God Created the Integers",
+                "description":"slightly used, but in good condition. Book about Maths.",
+                "price":42.69,
+                }]
+
     # takes all the books and adds them.
 
     for b in books:
@@ -161,6 +187,7 @@ def populate():
                  b['ISBN'])
 
     # teoh: populate users
+
     for u in users:
         add_user(u['username'],
                  u['studentNumber'],
@@ -170,6 +197,14 @@ def populate():
                  u['profilePicture'],
                  u['courseMain'],
                  u['year'], )
+
+    # teoh: populate listings
+    for l in listings:
+        add_listing(l['user'],
+                    l['bookName'],
+                    l['description'],
+                    l['price'],)
+
 
 
 # Code to add a book
@@ -204,6 +239,18 @@ def add_user(username, student_number, first_name, last_name, email,
         studentID=student_number)[0]
     user_profile.save()
     return user_profile
+
+
+def add_listing(username, bookname, description, price):
+    listing = Listing.objects.get_or_create(
+        user=username,
+        info=description,
+        price=price,
+        book=bookname,
+    )[0]
+    listing.save()
+
+    return listing
 
 
 # Start execution here!
