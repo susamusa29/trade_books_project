@@ -125,9 +125,7 @@ def add_book(request):
 
 def user(request):
     """User view."""
-    return render(request, 'tradebooks/user.html', context={"user":request.user, "userProfile":
-        UserProfile.objects.filter(user=request.user)
-        })
+    return render(request, 'tradebooks/user.html')
 
 
 
