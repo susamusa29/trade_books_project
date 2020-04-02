@@ -14,6 +14,22 @@ from django.template.defaultfilters import slugify
 
 
 # Create your models here.
+#Category models for categories and searches
+
+# class Category(models.Model):
+#     name = models.CharField(max_length=200, db_index=True)
+#     slug = models.SlugField(max_length=200, db_index=True, unique = True)
+
+#     class Meta:
+#         ordering = ('name',)
+#         verbose_name = 'category'
+#         verbose_name_plural = 'categories'
+
+#     def __str__(self):
+#         return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse()
 
 #The first model is the user model
 
@@ -82,6 +98,7 @@ class Book(models.Model):
         blank=True
     )
     slug = models.SlugField(unique=True)
+    # category = models.ForeignKey(Category, related_name='books')
 
 # Some foreign keys for the 1:N relationships
 # on_delete

@@ -140,3 +140,11 @@ def about(request):
 def faq(request):
     """FAQ view."""
     return render(request, 'tradebooks/faq.html')
+
+# def book_list(request, category_slug=None):
+#     category=None
+#     categories = Category.objects.all()
+#     books = Books.objects.all()
+#     if category_slug:
+#         category = get_object_or_404(Category, category_slug=category_slug)
+#         books = books.filter(category=category)
