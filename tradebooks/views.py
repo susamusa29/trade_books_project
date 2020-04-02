@@ -6,12 +6,13 @@ added search, faq and about
 
 author: Teoh Yee Hou (2471020t)
         Stanislava Dyakova (2390717d)
+        Abrar Haroon (2513933h)
 """
 
 # non-django
 from datetime import datetime
     #new one added because of registration form
-from tradebooks.forms import UserForm, UserProfileForm, BookForm
+from tradebooks.forms import UserForm, UserProfileForm, BookForm, HomeForm
 from tradebooks.models import UserProfile
 from tradebooks.models import Listing, Book
 # django
@@ -23,7 +24,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.db.models import Q
-
+import os
+import smtplib
+import requests
+from . import forms
+from . import config
+from django.views.generic import TemplateView
+from email.message import EmailMessage
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 def index(request):
     """Index view.
@@ -266,6 +275,46 @@ def search_result(request):
 
     else:
         return render(request, 'tradebooks/search_result.html')
+
+#added(API)
+def button(request):
+    
+    return render(request, 'home.html')
+
+# external function obtains email from the user and sends them a confirmation in real time
+# configuration settings for sensitive data in email in config.py
+# home.html contains the form and button functionalitys
+
+def external(request):
+    form = forms.HomeForm(request.POST)
+    if request.method =='POST':
+        if form.is_valid(): 
+
+            to_email = form.cleaned_data.get('post')
+            post = form.save(commit=False)
+            post.is_active = False
+            mail_subject = config.EMAIL_SUBJECT
+            message = config.EMAIL_MESSAGE
+            EMAIL_ADDRESS = config.EMAIL_HOST_USER
+            EMAIL_PASSWORD = config.EMAIL_HOST_PASSWORD
+    
+
+            msg = EmailMessage()
+            msg['From'] = EMAIL_ADDRESS
+            msg['To'] = to_email
+            msg['subject'] = mail_subject
+            msg.set_content(message)
+            with smtplib.SMTP_SSL(config.EMAIL_HOST, config.EMAIL_PORT) as smtp:
+               
+                smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+                smtp.send_message(msg)
+                messages.success(request, 'Thank you')
+            return HttpResponseRedirect('/tradebooks/product/')   
+
+    else:
+
+        return render(request, 'home.html', {'form':form})
+
 
 
 
