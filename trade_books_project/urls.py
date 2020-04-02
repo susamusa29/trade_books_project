@@ -31,5 +31,6 @@ from tradebooks import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('admin/', admin.site.urls),
+    path('external/', views.external),
     path('tradebooks/', include('tradebooks.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
