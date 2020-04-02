@@ -1,0 +1,29 @@
+{% extends 'tradebooks/base.html' %}
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>
+             Order Confirmation    
+        </title>
+    </head>
+    </body>
+         <form action="/external/" method="post">
+             {% csrf_token%}
+           <font color= "black" face="georgia" size="4">Enter Your Email Address:</font>
+             <input type="email" name="post" required><br><br>
+             <button type="submit" value="Send Confirmation" style="background-color:lightgrey"><font color= "black" face="georgia" size="3">Submit</font></button>
+ 
+         </form>
+       <style>
+         body{
+              background-image: url("{% static 'images/books.jpg' %});
+            }
+      <div>
+     <a href="/external/">external</a><br />
+     img src="{% static 'images/books.jpg' %}"
+     alt="Picture of Books" />
+
+     </div>
+   </body>
+</html>
