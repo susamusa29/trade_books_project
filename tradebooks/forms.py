@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from tradebooks.models import UserProfile, Book
+from tradebooks.models import UserProfile, Book, Post
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -22,3 +22,14 @@ class BookForm(forms.ModelForm):
         model = Book
         fields = ('bookName', 'bookImage', 'bookAuthor', 'course', 'year', 'bookDescription', 'price', 'currency', 'slug', 'bookISBN')
         exclude = ('bookSold', 'bookBought')
+        
+# API
+# provides functionality for the form used in home.html
+class HomeForm(forms.ModelForm):
+
+    post = forms.CharField
+
+    class Meta:
+        # Provide an association between the ModelForm and a model
+        model = Post
+        fields = ('post',)
