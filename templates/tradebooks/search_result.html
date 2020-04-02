@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends 'tradebooks/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    search
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+    <h3 class="display-3">Search For Listings</h3>
+    <div class="row" id="search">
+        <form class="form-inline"
+              action="{% url 'tradebooks:search_result' %}"
+              method="GET"
+              value="{{ request.GET.search }}">
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="text"
+                       name="search"
+                       class="form-control"
+                       value="{{ request.GET.search }}"
+                       placeholder="Search..."/>
+            </div>
+            <button type="submit"
+                    name="submit"
+                    value="Search"
+                    class="btn btn-primary mb-2">
+                <i class = "fa fa-search text-white ml-3"
+                   aria-hidden = "true"></i></button>
+        </form>
+    </div>
+
+    {% if submit_button == "Search" and request.GET.search != "" %}
+        {% if listings %}
+            <h5 class="display-5">Results for <b> {{ request.GET.search }}</b></h5>
+            <br/>
+            <br/>
+            <hr/>
+
+            {% for listing in listings %}
+                {% for book in books %}
+                    {% if listing.book == book.bookName %}
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 col-xs-12 px-2">
+                                <a href="{% url 'tradebooks:product' listing.slug %}">
+                                    <img src="{{ MEDIA_URL}}{{ book.bookImage }}"
+                                         alt="{{ listing.book }}"
+                                         class="img-reactive listing-img"/>
+                                </a>
+                            </div>
+                            <div class="col-md-9 col-sm-8 col-xs-12 px-2">
+                                <h3>
+                                    <a href="{% url 'tradebooks:product' listing.slug %}">
+                                        {{ listing.book }}
+                                    </a>
+                                </h3>
+                                <h4>Price: £{{ listing.price }}</h4>
+                                <h5>Seller: {{ listing.user }}</h5>
+                                <p>Info: {{ listing.info }}</p>
+                            </div>
+                        </div>
+                        <hr/>
+                    {% endif %}
+                {% endfor%}
+            {% endfor %}
+        {% else %}
+            No search results for {{ request.GET.search }}
+        {% endif %}
+    {% endif %}
+</div>
+
+{% endblock %}
