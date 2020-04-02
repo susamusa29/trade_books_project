@@ -148,7 +148,7 @@ def add_book(request):
     else:
         add_form=BookForm()
 
-    return render(request, 'tradebooks/add.html', context = {'add_form':add_form, 'added': added})
+    return render(request, 'tradebooks/add_book.html', context = {'add_form':add_form, 'added': added})
 
 
 
