@@ -58,9 +58,10 @@
         <style>
             .listing-img {
             object-fit: cover;
-
-            width: 6em;
-            height: 9em;
+            /* dimension of a regular book is 6inches x 9inches hence the
+            6x9 scale factor */
+            width: 12em;
+            height: 18em;
             }
             .icon {
             width:16px;
@@ -220,7 +221,7 @@
                                 <a class="nav-link" href="{% url 'tradebooks:index' %}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'tradebooks:product' %}">Book</a>
+                                <a class="nav-link" href="{% url 'tradebooks:books' %}">All Books</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'tradebooks:about' %}">About</a>

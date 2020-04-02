@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<!-- all books/listings page
+
+note:
+listings reactivity is wonky, will overlap pic before snapping to small
+view
+
+todo:
+optimize reqctivity.
+remove hardcoded pic.
+add links to product page.
+
+Author: Teoh Yee Hou (2471020t)
+Filename: books.html
+-->
 {% extends 'tradebooks/base.html' %}
 {% load staticfiles %}
 
@@ -14,21 +28,20 @@
     {% if listings %}
         {% for listing in listings %}
             <div class="row">
-                <div class="col-md-3 col-xs-12">
+                <div class="col-md-3 col-sm-4 col-xs-12 px-2">
                     <img src="https://d2sofvawe08yqg.cloudfront.net/tangowithdjango2/hero2x?1580989954"
                          alt="Listing image"
                          class="img-reactive listing-img"/>
                 </div>
-                <div class="col-md-9 col-xs-12">
+                <div class="col-md-9 col-sm-8 col-xs-12 px-2">
                     <h3><a href="#">{{ listing.book }}</a></h3>
-                    <h5>{{ listing.price }}</h5>
+                    <h5>Price: £{{ listing.price }}</h5>
                     <p>{{ listing.info }}</p>
                 </div>
             </div>
             <hr/>
         {% endfor %}
     {% endif %}
-
 </div>
 
 {% endblock %}
