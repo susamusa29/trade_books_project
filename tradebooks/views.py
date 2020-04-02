@@ -22,6 +22,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.db.models import Q
 
 
 def index(request):
@@ -188,6 +189,54 @@ def about(request):
 def faq(request):
     """FAQ view."""
     return render(request, 'tradebooks/faq.html')
+
+
+# def search_result(request):
+#     if request.method == "GET":
+#         query = request.GET.get("search")
+#
+#         submit_button = request.GET.get("submit")
+#
+#         if query is not None:
+#             lookups = Q(title__icontains=query)|
+#                       Q(content__icontains=query)
+#
+#             results = Post.objects.filter(lookups).distinct()
+#
+#             context={'results': results,
+#                      'submitbutton': submit_button}
+#
+#             return render(request, 'tradebooks/search_result.html', context)
+#         else:
+#             return render(request, 'tradebooks/search_result.html')
+#     else:
+#         return render(request, 'tradebooks/search_result.html')
+
+def search_result(request):
+    if request.method == 'GET':
+        query = request.GET.get('search')
+
+        submit_button = request.GET.get('submit')
+
+        if query is not None:
+            lookups = Q(book__icontains=query) \
+                      # | Q(content__icontains=query)
+
+            listings = Listing.objects.filter(lookups).distinct()
+
+            context_dict ={'listings': listings,
+                           'submit_button': submit_button,
+                           'books':Book.objects.all()}
+
+            return render(request, 'tradebooks/search_result.html', context_dict)
+
+        else:
+            return render(request, 'tradebooks/search_result.html')
+
+    else:
+        return render(request, 'tradebooks/search_result.html')
+
+
 
 # def book_list(request, category_slug=None):
 #     category=None

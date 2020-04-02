@@ -149,3 +149,24 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.book
+
+
+# class Category(models.Model):
+#     """Category model.
+#     (added by teoh)
+#     """
+#     NAME_MAX_LENGTH = 30
+#
+#     name = models.CharField(max_length = NAME_MAX_LENGTH, unique=True)
+#     slug = models.SlugField(unique=True, default="")
+#
+#     def save(self, *args, **kwargs):
+#         self.slug = slugify(self.name)
+#         super(Category, self).save(*args, **kwargs)
+#
+#     class Meta:
+#         """Plural spelling."""
+#         verbose_name_plural = "Categories"
+#
+#     def __str__(self):
+#         return self.name
