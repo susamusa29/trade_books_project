@@ -122,20 +122,23 @@ def product(request):
 def add_book(request):
     #value to tell the template whether addition is successful
     added = False
+    user= request.user.id
 
     if(request == 'POST'):
         #creating a form object
         #taking information from the form information
         add_form = BookForm(request.POST)
 
+
         if(add_form.is_valid()):
+            book.bookSold = user
 
             #save form to database
             book = add_form.save(commit=False)
 
             if 'bookImage' in request.FILES:
                 book.bookImage = request.FILES['bookImage']
-
+            
             book.save()
 
             added = True
