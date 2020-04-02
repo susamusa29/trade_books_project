@@ -123,8 +123,8 @@ def add_book(request):
     #view to add books#
     return render(request, 'tradebooks/add_boook.html', {'form':form})
 
-def showlisting(request, listing_name_slug):
-    """Show listing view."""
+def show_listings(request, listing_name_slug):
+    """Show all books/listing view."""
     contextDict = {}
     try:
         listing = Listing.objects.get(slug=listing_name_slug)
@@ -133,7 +133,14 @@ def showlisting(request, listing_name_slug):
     except Listing.DoesNotExist:
         contextDict["listing"] = None
 
-    return render(request, 'tradebooks/product.html', context=contextDict)
+    return render(request, 'tradebooks/books.html', context=contextDict)
+
+#
+def books(request):
+    return render(request, 'tradebooks/books.html', context={
+        "listings": Listing.objects.all(),
+    })
+
 
 
 def user(request):

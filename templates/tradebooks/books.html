@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% extends 'tradebooks/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    All Books
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+    <h4 class="display-4">All Books/Listings</h4>
+    <hr/>
+    {% if listings %}
+        {% for listing in listings %}
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <img src="https://d2sofvawe08yqg.cloudfront.net/tangowithdjango2/hero2x?1580989954"
+                         alt="Listing image"
+                         class="img-reactive listing-img"/>
+                </div>
+                <div class="col-md-9 col-xs-12">
+                    <h3><a href="#">{{ listing.book }}</a></h3>
+                    <h5>{{ listing.price }}</h5>
+                    <p>{{ listing.info }}</p>
+                </div>
+            </div>
+            <hr/>
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+{% endblock %}
