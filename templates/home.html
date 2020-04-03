@@ -10,14 +10,30 @@
    <body style="background-color:light blue;"> 
          <form action="/external/" method="post">
              {% csrf_token%}
-           <font color= "black" face="georgia" size="4">Enter Your Email Address:</font>
-             <input type="email" name="post" required><br><br>
-             <button type="submit" value="Send Confirmation" style="background-color:lightgrey"><font color= "black" face="georgia" size="3">Submit</font></button>
+           <font color= "#8b008b" face="perpetua" size="6" style="font-weight: bold">Enter Your Email Address:</font>
+             <input style="background-color:lavenderblush; padding: 15px 50px" type="email" name="post" required><br><br>
+             <button type="submit" value="Send Confirmation" style="background-color:darkred; padding: 15px 32px; position: center"><font color= "#f5f5f5" face="perpetua" size="6">Submit</font></button>
  
          </form>
        <style>
+
+        * {
+            padding: 18mm;
+            margin: 0cm;
+        }
+        .fit { /* set relative picture size */
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .center {
+            display: block;
+            margin: auto;
+        }
          body{
-              background-image: url("{% static 'images/books.jpg' %});
+              background-image: url("{% static 'images/books.jpg' %}");
+
+              background-repeat:no-repeat;
+              background-size:100% 100vh;
             }
       <div>
      <a href="/tradebooks/external/">external</a><br />
@@ -25,5 +41,6 @@
      alt="Picture of Books" />
 
      </div>
+     </style>
    </body>
 </html>
