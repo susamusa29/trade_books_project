@@ -350,7 +350,7 @@ def external(request):
                 smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
                 smtp.send_message(msg)
                 messages.success(request, 'Thank you')
-            return HttpResponseRedirect('/tradebooks/product/')   
+            return HttpResponseRedirect('/tradebooks/books/')   
 
     else:
 
