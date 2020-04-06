@@ -3,6 +3,10 @@
 note:
 formatted code, commented unused imports
 added search, faq and about
+added paginator to listing
+
+todo:
+add paginator to listings, catalog and user.
 
 author: Teoh Yee Hou (2471020t)
         Stanislava Dyakova (2390717d)
@@ -14,6 +18,7 @@ import time
 import operator
 from email.message import EmailMessage
 
+from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import update_session_auth_hash
@@ -189,9 +194,18 @@ def show_listings(request, listing_name_slug):
 
 #
 def books(request):
+    all_listings = Listing.objects.all().order_by("id")
+
+    # test limit to 3 listings as there ara only 4 listings in populate.
+    # will add more.
+    paginator = Paginator(all_listings, 3)
+
+    page = request.GET.get('page')
+
+    listing = paginator.get_page(page)
 
     return render(request, 'tradebooks/books.html', context={
-        "listings": Listing.objects.all().order_by("-id"),
+        "listings": listing,
     })
 
 

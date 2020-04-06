@@ -5,6 +5,7 @@ note:
 listings reactivity is wonky, will overlap pic before snapping to small
 view
 added individual listings pics and links. added anchor
+added paginator
 
 todo:
 optimize reqctivity.
@@ -22,12 +23,33 @@ Filename: books.html
 {% block body_block %}
 
 <div class="container">
+
     <h4 class="display-4">All Books/Listings</h4>
     <hr/>
+    <!-- patination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if listings.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ listings.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ listings.number }} of {{ listings.paginator.num_pages }}.
+            </span>
+
+            {% if listings.has_next %}
+                <a href="?page={{ listings.next_page_number }}">next</a>
+                <a href="?page={{ listings.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+    <br/>
     {% if listings %}
         {% for listing in listings %}
             <div class="row">
-                <div class="col-md-3 col-sm-4 col-xs-12 px-2">
+                <div class="col-md-4 col-sm-6 col-xs-12 px-2">
                     <a href="{% url 'tradebooks:product' listing.slug %}">
                         <img src="{{ MEDIA_URL}}{{ listing.book.bookImage }}"
                              alt="{{ listing.book }}"
@@ -35,7 +57,7 @@ Filename: books.html
                         <!-- derp used reactive instead of responsive -->
                     </a>
                 </div>
-                <div class="col-md-9 col-sm-8 col-xs-12 px-2">
+                <div class="col-md-8 col-sm-6 col-xs-12 px-2">
                     <h3>
                         <a href="{% url 'tradebooks:product' listing.slug %}">
                             {{ listing.book }}
@@ -51,6 +73,25 @@ Filename: books.html
             <hr/>
         {% endfor %}
     {% endif %}
+
+    <!-- pagination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if listings.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ listings.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ listings.number }} of {{ listings.paginator.num_pages }}.
+            </span>
+
+            {% if listings.has_next %}
+                <a href="?page={{ listings.next_page_number }}">next</a>
+                <a href="?page={{ listings.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 
 {% endblock %}
