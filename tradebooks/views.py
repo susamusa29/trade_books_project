@@ -27,7 +27,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
 from functools import reduce
 
@@ -209,6 +209,25 @@ def books(request):
     })
 
 
+def delete_listing(request, listing_name_slug):
+    listing = get_object_or_404(Listing, slug=listing_name_slug)
+
+    lister = listing.user.user
+
+    if request.method == "POST" and \
+            request.user.is_authenticated and \
+            request.user.username == lister:
+        listing.delete()
+        messages.success(request, "Post successfully deleted!")
+        return redirect(reverse('tradebooks:user'))
+
+    context = {'listing': listing,
+               'lister': lister,
+               }
+
+    return render(request, 'tradebooks/delete_listing.html', context)
+
+
 @login_required
 def user(request):
     """User view."""
@@ -227,6 +246,7 @@ def user(request):
     return render(request, 'tradebooks/user.html', context={
         "listings": listings,
     })
+
 #code to edit a profile
 @login_required
 def edit_profile(request):

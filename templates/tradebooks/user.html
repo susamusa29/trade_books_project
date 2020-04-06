@@ -37,6 +37,23 @@
 
 {% block body_block %}
     <div class = "container">
+        <div class="row">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                <i class="fas fa-times-circle"></i>
+                            </span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
         <div class = "row" style = "margin-top:2em">
             <div class = "col-md-2 col-sm-6 col-sm-12">
                 <h2>Profile</h2>
@@ -117,8 +134,10 @@
                                              class="img-thumbnail
                                                     listing-img">
                                         <br/>
-                                        {{ listing.book.bookName }}
+                                        <b>{{ listing.book.bookName }}</b>
                                     </a>
+                                    <br/>
+                                    <a href="{% url 'tradebooks:delete_listing' listing.slug %}"><span>Delete</span></a>
                                 </div>
                             {% endfor %}
                         {% endif %}

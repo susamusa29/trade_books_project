@@ -67,19 +67,30 @@
                 <p> Price: {{ listing.book.currency }} {{ listing.book.price }} </p>
             </div>
             <!-- contact seller -->
+
             {% if user.is_authenticated %}
-            <div class="col-md-4 col-xs-12" style="margin-top:2em">
-                 <a href="mailto:{{ listing.user.user.email }}?subject=Interested%20in%20your%20book&body=Hi%2C%20I%20am%20interested%20in%20your%20book%20on%20Tradebooks%0D%0A%0D%0ABook%20Name%3A%0D%0ABook%20ISBN%3A%0D%0ABook%20Author%3A%0D%0A%0D%0A%0D%0A"
-                    target="_top"
-                    class="btn btn-primary">
-                     Contact Seller
-                 </a>
-                <a href="http://127.0.0.1:8000/tradebooks/external/"
-                    target="_top"
-                    class="btn btn-primary">
-                     Purchase This!
-                 </a>
-            </div>
+                {% if request.user == listing.user.user %}
+                    <div class="col-md-4 col-xs-12" style="margin-top:2em">
+                        <a href="{% url 'tradebooks:delete_listing' listing.slug %}"
+                           target="_top"
+                           class="btn btn-primary">
+                            Delete this listing.
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="col-md-4 col-xs-12" style="margin-top:2em">
+                         <a href="mailto:{{ listing.user.user.email }}?subject=Interested%20in%20your%20book&body=Hi%2C%20I%20am%20interested%20in%20your%20book%20on%20Tradebooks%0D%0A%0D%0ABook%20Name%3A%0D%0ABook%20ISBN%3A%0D%0ABook%20Author%3A%0D%0A%0D%0A%0D%0A"
+                            target="_top"
+                            class="btn btn-primary">
+                             Contact Seller
+                         </a>
+                        <a href="http://127.0.0.1:8000/tradebooks/external/"
+                            target="_top"
+                            class="btn btn-primary">
+                             Purchase This!
+                         </a>
+                    </div>
+                {% endif %}
             {% else %}
             <div class="col-md-4 col-xs-12" style="margin-top:2em">
                 <h5 class="display-5">Please log in to contact or purchase.</h5>
@@ -99,12 +110,12 @@
                 <hr/>
                 <p>
 
-                    Book Name: {{ listing.book.bookName }}<br/>
-                    Book ISBN: {{ listing.book.bookISBN }}<br/>
-                    Book Author: {{ listing.book.bookAuthor }}<br/>
-                    Course: {{ listing.book.course }}<br/>
-                    Year: {{ listing.book.year }}<br/>
-                    Book Description: {{ listing.book.bookDescription }}
+                    <b>Book Name:</b> {{ listing.book.bookName }}<br/>
+                    <b>Book ISBN:</b> {{ listing.book.bookISBN }}<br/>
+                    <b>Book Author:</b> {{ listing.book.bookAuthor }}<br/>
+                    <b>Course:</b> {{ listing.book.course }}<br/>
+                    <b>Year:</b> {{ listing.book.year }}<br/>
+                    <b>Book Description:</b> {{ listing.book.bookDescription }}
 
 
 

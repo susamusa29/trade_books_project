@@ -22,7 +22,7 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
 
     # maybe we can use slug for individual products
-    path('product/<slug:listing_name_slug>', views.show_listings, name='product'),
+    path('product/<slug:listing_name_slug>/', views.show_listings, name='product'),
     # all books/listing page
     path('books/', views.books, name='books'),
     path('user/', views.user, name='user'),
@@ -40,5 +40,6 @@ urlpatterns = [
     path('external/', views.external, name='external'),
     path('user/edit/', views.edit_profile, name='edit_profile'),
     path('edit/', views.edit_profile, name='edit'),
-    path('change-password/', views.change_password, name="change-password")
+    path('change-password/', views.change_password, name="change-password"),
+    path('product/<slug:listing_name_slug>/delete_listing/', views.delete_listing, name="delete_listing"),
 ]
