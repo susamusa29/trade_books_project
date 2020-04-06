@@ -78,32 +78,60 @@
                                 <!--BookName-->
                             <!--</a>-->
                         <!--</div>-->
+                        <!-- pagination -->
+                        <div class="pagination">
+                            <span class="step-links">
+                                {% if listings.has_previous %}
+                                    <a href="?page=1">
+                                        <i class="fas fa-angle-double-left"></i>
+                                    </a>
+                                    <a href="?page={{ listings.previous_page_number }}">
+                                        <i class="fas fa-angle-left"></i>
+                                    </a>
+                                {% endif %}
+
+                                <span class="current">
+                                    Page {{ listings.number }} of {{ listings.paginator.num_pages }}.
+                                </span>
+
+                                {% if listings.has_next %}
+                                    <a href="?page={{ listings.next_page_number }}">
+                                        <i class="fas fa-angle-right"></i>
+                                    </a>
+                                    <a href="?page={{ listings.paginator.num_pages }}">
+                                        <i class="fas fa-angle-double-right"></i>
+                                    </a>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
 
                         {% if listings %}
                             {% for listing in listings %}
-                                {% if listing.user.user.username == user.username %}
-                                        <div class = "col-md-3 col-xs-12">
-                                            <!--<a class = "nav_link" href = "{% url 'tradebooks.product' listing.slug ">-->
-                                            <a class = "nav_link" href = "{% url 'tradebooks:product' listing.slug %}">
-                                                <img src="{{ MEDIA_URL}}{{ listing.book.bookImage }}"
-                                                     alt = "{{ listing.book }}"
-                                                     class="img-thumbnail
-                                                            listing-img">
-                                                <br/>
-                                                {{ listing.book.bookName }}
-                                            </a>
-                                        </div>
-                                {% endif %}
+                                <div class = "col-md-3 col-xs-12">
+                                    <!--<a class = "nav_link" href = "{% url 'tradebooks.product' listing.slug ">-->
+                                    <a class = "nav_link" href = "{% url 'tradebooks:product' listing.slug %}">
+                                        <img src="{{ MEDIA_URL}}{{ listing.book.bookImage }}"
+                                             alt = "{{ listing.book }}"
+                                             class="img-thumbnail
+                                                    listing-img">
+                                        <br/>
+                                        {{ listing.book.bookName }}
+                                    </a>
+                                </div>
                             {% endfor %}
                         {% endif %}
 
-                        <div class = "col-md-3 col-xs-12">
-                            <a class = "nav-link" href = "{% url 'tradebooks:add' %}">
-                                <!-- get add pic for this -->
-                                <i class="fa fa-plus-circle"></i> <br/>
-                                Add a new listing
-                            </a>
-                        </div>
+                        {% if not listings.has_next %}
+                            <div class = "col-md-3 col-xs-12">
+                                <a class = "nav-link" href = "{% url 'tradebooks:add' %}">
+                                    <!-- get add pic for this -->
+                                    <i class="fa fa-plus-circle"></i> <br/>
+                                    Add a new listing
+                                </a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

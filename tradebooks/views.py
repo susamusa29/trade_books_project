@@ -216,13 +216,12 @@ def user(request):
     # context_dict = {}
     #
     # showlisting(context_dict, listing_name_slug)
-    all_listing = Listing.objects.all()
+    all_listing = Listing.objects.filter(user=request.user.userprofile)
     paginator = Paginator(all_listing, 1)
 
     page = request.GET.get('page')
 
     listings = paginator.get_page(page)
-
 
 
     return render(request, 'tradebooks/user.html', context={
