@@ -80,21 +80,17 @@
                         {% if listings %}
                             {% for listing in listings %}
                                 {% if listing.user.user.username == user.username %}
-                                    {% for book in books %}
-                                        {% if listing.book == book.bookName %}
                                         <div class = "col-md-3 col-xs-12">
                                             <!--<a class = "nav_link" href = "{% url 'tradebooks.product' listing.slug ">-->
                                             <a class = "nav_link" href = "{% url 'tradebooks:product' listing.slug %}">
-                                                <img src="{{ MEDIA_URL}}{{ book.bookImage }}"
+                                                <img src="{{ MEDIA_URL}}{{ listing.book.bookImage }}"
                                                      alt = "{{ listing.book }}"
                                                      class="img-thumbnail
                                                             listing-img">
                                                 <br/>
-                                                {{ book.bookName }}
+                                                {{ listing.book.bookName }}
                                             </a>
                                         </div>
-                                        {% endif %}
-                                    {% endfor %}
                                 {% endif %}
                             {% endfor %}
                         {% endif %}

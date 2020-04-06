@@ -48,7 +48,7 @@
         <div class="row" style="margin-top:2em">
             <!-- image -->
             <div class="col-md-4 col-xs-12" style="margin-top:2em">
-                <img src="{{ MEDIA_URL}}{{ book.bookImage }}"
+                <img src="{{ MEDIA_URL}}{{ listing.book.bookImage }}"
                      alt="{{ listing.book }}"
                      class="img-responsive listing-img">
             </div>
@@ -64,12 +64,12 @@
 
                 <br/>
                 <p class="lead"> {{ listing.book }} </p>
-                <p> Price: £{{ listing.price }} </p>
+                <p> Price: {{ listing.book.currency }} {{ listing.book.price }} </p>
             </div>
             <!-- contact seller -->
             {% if user.is_authenticated %}
             <div class="col-md-4 col-xs-12" style="margin-top:2em">
-                 <a href="mailto:2471020t@student.gla.ac.uk?subject=Interested%20in%20your%20*bookname*&body=book%3A%20Tango%20With%20Django%202%0D%0Aisbn%3A%2042069%0D%0Aprice%3A%20free"
+                 <a href="mailto:{{ listing.user.user.email }}?subject=Interested%20in%20your%20book&body=Hi%2C%20I%20am%20interested%20in%20your%20book%20on%20Tradebooks%0D%0A%0D%0ABook%20Name%3A%0D%0ABook%20ISBN%3A%0D%0ABook%20Author%3A%0D%0A%0D%0A%0D%0A"
                     target="_top"
                     class="btn btn-primary">
                      Contact Seller
@@ -99,12 +99,12 @@
                 <hr/>
                 <p>
 
-                    Book Name: {{ book.bookName }}<br/>
-                    Book ISBN: {{ book.bookISBN }}<br/>
-                    Book Author: {{ book.bookAuthor }}<br/>
-                    Course: {{ book.course }}<br/>
-                    Year: {{ book.year }}<br/>
-                    Book Description: {{ book.bookDescription }}
+                    Book Name: {{ listing.book.bookName }}<br/>
+                    Book ISBN: {{ listing.book.bookISBN }}<br/>
+                    Book Author: {{ listing.book.bookAuthor }}<br/>
+                    Course: {{ listing.book.course }}<br/>
+                    Year: {{ listing.book.year }}<br/>
+                    Book Description: {{ listing.book.bookDescription }}
 
 
 

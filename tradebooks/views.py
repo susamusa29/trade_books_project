@@ -9,33 +9,32 @@ author: Teoh Yee Hou (2471020t)
         Abrar Haroon (2513933h)
 """
 
-# non-django
-from datetime import datetime
-    #new one added because of registration form
-from tradebooks.forms import UserForm, UserProfileForm, BookForm, HomeForm, UserEditForm
-from tradebooks.models import UserProfile
-from tradebooks.models import Listing, Book
+import smtplib
+import time
+import operator
+from email.message import EmailMessage
 
-# django
-
-from django.shortcuts import render
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.db.models import Q
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.db.models import Q
-import os
-import smtplib
-import requests
-from . import forms
+from functools import reduce
+
+# non-django
+# new one added because of registration form
+from tradebooks.forms import UserForm, UserProfileForm, BookForm, UserEditForm
+from tradebooks.models import Listing, Book
 from . import config
-from django.views.generic import TemplateView
-from email.message import EmailMessage
-from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
+from . import forms
+
+
+# django
 
 
 def index(request):
@@ -45,7 +44,11 @@ def index(request):
         add context dicts
         cookie handler
     """
-    return render(request, 'tradebooks/index.html')
+
+    return render(request, 'tradebooks/index.html', context={
+        "carouselItems": Listing.objects.all().order_by("-id")[:3],
+        "latestListings": Listing.objects.all().order_by("-id")[3:12],
+    })
 
 #only people who have logged in can access this view 
 @login_required
@@ -148,7 +151,7 @@ def add_book(request):
             book.bookSold = user
 
             #save form to database
-            book = add_form.save(commit=False)
+            book = add_form.save(commit=True)
 
             if 'bookImage' in request.FILES:
                 book.bookImage = request.FILES['bookImage']
@@ -174,9 +177,7 @@ def show_listings(request, listing_name_slug):
     try:
 
         listing = Listing.objects.get(slug=listing_name_slug)
-        book = Book.objects.get(bookName=listing.book)
         contextDict["listing"] = listing
-        contextDict["book"] = book
 
 
 
@@ -190,12 +191,11 @@ def show_listings(request, listing_name_slug):
 def books(request):
 
     return render(request, 'tradebooks/books.html', context={
-        "listings": Listing.objects.all(),
-        "books": Book.objects.all(),
+        "listings": Listing.objects.all().order_by("-id"),
     })
 
 
-
+@login_required
 def user(request):
     """User view."""
 
@@ -207,7 +207,6 @@ def user(request):
 
     return render(request, 'tradebooks/user.html', context={
         "listings": Listing.objects.all(),
-        "books": Book.objects.all(),
     })
 #code to edit a profile
 @login_required
@@ -225,21 +224,40 @@ def edit_profile(request):
     return render(request, 'tradebooks/edit_profile.html', args)
 
 @login_required
+# def change_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(data=request.POST, user=request.user)
+#
+#         if form.is_valid():
+#             form.save()
+#             update_session_auth_hash(request, form.user)
+#             return redirect(reverse('tradebooks:user'))
+#         else:
+#             return redirect('tradebooks:about')
+#     else:
+#         form = PasswordChangeForm(user=request.user)
+#         args = {'form':form}
+#
+#     return render(request, 'tradebooks/change_password.html', args)
 def change_password(request):
+    """Change password view.
+    Note:
+    (teoh) previous version does not work so it is replaced by this version.
+    """
     if request.method == 'POST':
-        form = PasswordChangeForm(data=request.POST, user=request.user)
+        form = PasswordChangeForm(request.user, request.POST)
 
         if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
+            user_form = form.save()
+            update_session_auth_hash(request, user_form)
             return redirect(reverse('tradebooks:user'))
-        else:
-            return redirect('tradebooks:index')
-    else:
-        form = PasswordChangeForm(user=request.user)
-        args = {'form':form}
 
-    return render(request, 'tradebooks/change_password.html', args)
+
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'tradebooks/change_password.html', context={
+        'form': form
+    })
 
 def catalog(request):
     """Catalog view."""
@@ -294,20 +312,57 @@ def faq(request):
 #         return render(request, 'tradebooks/search_result.html')
 
 def search_result(request):
+    """Search results view.
+
+    splits the query then iterates through it, filtering disting results"""
     if request.method == 'GET':
         query = request.GET.get('search')
 
         submit_button = request.GET.get('submit')
 
-        if query is not None:
-            lookups = Q(book__icontains=query) \
-                      # | Q(content__icontains=query)
+        if query:
+            # old lookup
+            # lookups = Q(bookName__icontains=query) | Q(bookISBN__icontains=query) | Q(bookAuthor__icontains=query) | \
+            #           Q(course__icontains=query)
+            #
+            # books = Book.objects.filter(lookups).distinct()
+            books = Book.objects.all()
 
-            listings = Listing.objects.filter(lookups).distinct()
+            #splits the query for individual words.
+            words = query.split()
+            # lookup_dict = {"book_name": bookName__icontains,
+            #                ""}
+            # lookups = ["bookName__icontains",
+            #            "bookISBN__icontains",
+            #            "course__icontains",
+            #            ]
+            # searchlist = ["eval({})={}".format(l, w) for l in lookups for w in words ]
+            # search = [Q(eval(s))for s in searchlist]
+            # search = [Q((eval(l)="{}".format(l,w))) for l in lookups for w in words]
+            # lookup = search[0]
+            # for i in range(len(search)):
+            #     if i != 0:
+            #         lookup = lookup | search[i]
 
-            context_dict ={'listings': listings,
+            # for w in words:
+            #     for l in lookups:
+
+            # iterates through words list.
+            for w in words:
+                lookup = Q(bookName__icontains=w) | \
+                         Q(bookISBN__icontains=w) | \
+                         Q(course__icontains=w) | \
+                         Q(bookAuthor__icontains=w)
+                books = books.filter(lookup).distinct()
+
+
+            # lookup = reduce(lambda x, y: x | y, search)
+            # books = Book.objects.filter(lookup).distinct()
+
+
+            context_dict ={'books': books,
                            'submit_button': submit_button,
-                           'books':Book.objects.all()}
+                           'listings':Listing.objects.all()}
 
             return render(request, 'tradebooks/search_result.html', context_dict)
 
@@ -323,8 +378,8 @@ def button(request):
     return render(request, 'home.html')
 
 # external function obtains email from the user and sends them a confirmation in real time
-# configuration settings for sensitive data in email in config.py
-# home.html contains the form and button functionalitys
+# # configuration settings for sensitive data in email in config.py
+# # home.html contains the form and button functionalitys
 
 def external(request):
     form = forms.HomeForm(request.POST)

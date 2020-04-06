@@ -26,31 +26,29 @@ Filename: books.html
     <hr/>
     {% if listings %}
         {% for listing in listings %}
-            {% for book in books %}
-                {% if listing.book == book.bookName %}
-                    <div class="row">
-                        <div class="col-md-3 col-sm-4 col-xs-12 px-2">
-                            <a href="{% url 'tradebooks:product' listing.slug %}">
-                                <img src="{{ MEDIA_URL}}{{ book.bookImage }}"
-                                     alt="{{ listing.book }}"
-                                     class="img-reactive listing-img"/>
-                            </a>
-                        </div>
-                        <div class="col-md-9 col-sm-8 col-xs-12 px-2">
-                            <h3>
-                                <a href="{% url 'tradebooks:product' listing.slug %}">
-                                    {{ listing.book }}
-                                </a>
-                            </h3>
-                            <h4>Price: £{{ listing.price }}</h4>
-                            <h5>Seller: {{ listing.user }}</h5>
-                            <p>Info: {{ listing.info }}</p>
-
-                        </div>
-                    </div>
-                    <hr/>
-                {% endif %}
-            {% endfor %}
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-12 px-2">
+                    <a href="{% url 'tradebooks:product' listing.slug %}">
+                        <img src="{{ MEDIA_URL}}{{ listing.book.bookImage }}"
+                             alt="{{ listing.book }}"
+                             class="img-responsive listing-img"/>
+                        <!-- derp used reactive instead of responsive -->
+                    </a>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-12 px-2">
+                    <h3>
+                        <a href="{% url 'tradebooks:product' listing.slug %}">
+                            {{ listing.book }}
+                        </a>
+                    </h3>
+                    <h4>Price: {{ listing.book.currency }} {{ listing.book.price }}</h4>
+                    <h5>Seller: {{ listing.user }}</h5>
+                    <p>
+                        Listing Info: {{ listing.info }}<br/>
+                        Book Description: {{ listing.book.bookDescription }}</p>
+                </div>
+            </div>
+            <hr/>
         {% endfor %}
     {% endif %}
 </div>

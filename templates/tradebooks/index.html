@@ -48,28 +48,53 @@
             </ol>
 
             <!-- slide items -->
+            <!--<div class="carousel-inner">-->
+                <!--<div class="carousel-item active">-->
+                    <!--<a href="#">-->
+                        <!--<img class="d-block w-100"-->
+                             <!--src="https://i.kym-cdn.com/photos/images/newsfeed/001/505/718/136.jpg"-->
+                             <!--alt="smudge">-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="carousel-item">-->
+                    <!--<a href="#">-->
+                        <!--<img class="d-block w-100"-->
+                             <!--src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2013/05/08/11/half-cat-2048.jpg?width=1000&height=614&fit=bounds&format=pjpg&auto=webp&quality=70&crop=16:9,offset-y0.5"-->
+                             <!--alt="bipedal cat">-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--<div class="carousel-item">-->
+                    <!--<a href="#">-->
+                        <!--<img class="d-block w-100"-->
+                             <!--src="https://i.kym-cdn.com/photos/images/newsfeed/001/505/718/136.jpg"-->
+                             <!--alt="smudge">-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="#">
-                        <img class="d-block w-100"
-                             src="https://i.kym-cdn.com/photos/images/newsfeed/001/505/718/136.jpg"
-                             alt="smudge">
+                {% if carouselItems %}
+                {% for item in carouselItems %}
+                <div class="carousel-item {% cycle 'active' 'none' 'none' %}">
+                    <a href="{% url 'tradebooks:product' item.slug %}">
+                        <img class="d-block w-100 carousel-img blur"
+                             src="{{ MEDIA_URL}}{{ item.book.bookImage }}"
+                             alt="carousel {{ item.book }}">
+                        <img class="d-block carousel-img-top"
+                             src="{{ MEDIA_URL}}{{ item.book.bookImage }}"
+                             alt="carousel {{ item.book }}">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ item.book.bookName }}</h5>
+                            <p>
+                                {{ item.book.bookAuthor }}<br/>
+                                {{ item.book.currency }} {{ item.book.price }}<br/>
+
+                            </p>
+                        </div>
                     </a>
                 </div>
-                <div class="carousel-item">
-                    <a href="#">
-                        <img class="d-block w-100"
-                             src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2013/05/08/11/half-cat-2048.jpg?width=1000&height=614&fit=bounds&format=pjpg&auto=webp&quality=70&crop=16:9,offset-y0.5"
-                             alt="bipedal cat">
-                    </a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#">
-                        <img class="d-block w-100"
-                             src="https://i.kym-cdn.com/photos/images/newsfeed/001/505/718/136.jpg"
-                             alt="smudge">
-                    </a>
-                </div>
+                {% endfor %}
+                {% endif %}
             </div>
 
             <!-- navigation controls -->
@@ -90,5 +115,26 @@
                 <span class="sr-only">next</span>
             </a>
         </div>
+        <hr/>
+        {% if latestListings %}
+            <div class="row">
+                {% for llist in latestListings %}
+                    <div class="col-md-4 col-xs-12 px-2">
+                        <a href="{% url 'tradebooks:product' llist.slug %}">
+                            <img class="d-block listing-img"
+                                 src="{{ MEDIA_URL}}{{ llist.book.bookImage }}"
+                                 alt="latest listing: {{ item.book }}"> <br/>
+
+                            <p>
+                                <b>{{ llist.book.bookName }}</b><br/>
+                                {{ llist.book.bookAuthor }}<br/>
+                                {{ llist.book.currency }} {{ llist.book.price }}<br/>
+                            </p>
+                            <hr/>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

@@ -56,7 +56,47 @@
         Stanislava-->
 
         <style>
+            .index-listing-text{
+            margin-left: auto;
+            margin-right: auto;
+            }
+            .lr-border{
+            border-left:1px rgb(229,229,229);
+            border-right:1px rgb(229,229,229);
+            }
+            .blur{
+            filter: blur(8px);
+            }
+            .carousel-caption {
+            max-width: 100%;
+            width:100%;
+            left: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.50);
+            }
+            .text-glow {
+            text-shadow: 0 0 3px rgb(0, 0, 0);
+            }
+            .carousel-img-top {
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 36em;
+            width:  24em;
+            }
+            .carousel-img {
+            object-fit: cover;
+            height: 36em;
+            position: relative;
+            top: 0;
+            left: 0;
+            }
             .listing-img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
             object-fit: cover;
             /* dimension of a regular book is 6inches x 9inches hence the
             6x9 scale factor */
@@ -223,7 +263,10 @@
                 <!-- add collapse button later -->
 
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'tradebooks:index' %}">Home</a>

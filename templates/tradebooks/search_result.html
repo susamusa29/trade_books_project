@@ -43,9 +43,9 @@ Filename: search_result.html
             <br/>
             <hr/>
 
-            {% for listing in listings %}
-                {% for book in books %}
-                    {% if listing.book == book.bookName %}
+            {% for book in books %}
+                {% for listing in listings %}
+                    {% if listing.book == book %}
                         <div class="row">
                             <div class="col-md-3 col-sm-4 col-xs-12 px-2">
                                 <a href="{% url 'tradebooks:product' listing.slug %}">
@@ -60,9 +60,16 @@ Filename: search_result.html
                                         {{ listing.book }}
                                     </a>
                                 </h3>
-                                <h4>Price: £{{ listing.price }}</h4>
+
+                                <h4>Price: {{ listing.book.currency }} {{ listing.book.price }}</h4>
                                 <h5>Seller: {{ listing.user }}</h5>
-                                <p>Info: {{ listing.info }}</p>
+                                <p>
+                                    Listing Info: {{ listing.info }}<br/>
+                                    Book Description: {{ listing.book.bookDescription }}<br/>
+                                    Book ISBN: {{ listing.book.bookISBN }}<br/>
+                                    Book Author: {{ listing.book.bookAuthor }}<br/>
+                                    Course: {{ listing.book.course }}<br/>
+                                </p>
                             </div>
                         </div>
                         <hr/>

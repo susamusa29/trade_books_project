@@ -4,35 +4,38 @@
     Register Template 
     Author: Stanislava Dyakova
     StudentID:2390717D
+
+    Note:
+    (teoh) formatted to make the code look neater: consistent indentations.
 -->
 
 <!-- There is a small issue with the logo that I did not manage to fix-->
 
-    {% block title_block %}
-        Register
-    {% endblock %}
+{% block title_block %}
+    Register
+{% endblock %}
 
-    {% block head %}
-        <!-- Custom CSS-->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
-    {% endblock %}
+{% block head %}
+    <!-- Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+{% endblock %}
 
-    {% block body_block%}
+{% block body_block%}
     {% block header %}
-
     {% endblock %}
+
     {% block content %}
     {% endblock %}
 
     {% if registered %}
-    <div class ="text">
-    Thank you your profile has been created. Please press <a href="{% url 'tradebooks:index' %}">here.</a>
-    </div>
+        <div class ="text">
+        Thank you your profile has been created. Please press <a href="{% url 'tradebooks:index' %}">here.</a>
+        </div>
     {%else%}
     <!-- Labels for the form -->
-    <form id="user_form" method="post" action="{% url 'tradebooks:register' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h2>Sign Up</h2>
+        <form id="user_form" method="post" action="{% url 'tradebooks:register' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Sign Up</h2>
                 <p>
                     <label for="username" class="floatLabel">Username:</label>
                     <input id="username" name="username" type="text">
@@ -48,102 +51,102 @@
                     <input id="last_name" name="last_name" type="text">
                 </p>
 
-              <p>
-                  <label for="email" class="floatLabel">Email:</label>
-                  <input id="email" name="email" type="email">
-              </p> 
+                <p>
+                    <label for="email" class="floatLabel">Email:</label>
+                    <input id="email" name="email" type="email">
+                </p>
 
-              <p>
-                  <label for="password" class="floatLabel">Password:</label>
-                  <input id="password" name="password" type="password">
-                  <span>Enter a password longer than 8 characters</span>
-              </p>
+                <p>
+                    <label for="password" class="floatLabel">Password:</label>
+                    <input id="password" name="password" type="password">
+                    <span>Enter a password longer than 8 characters</span>
+                </p>
 
-              <p>
-                <label for="confirm_password" class="floatLabel">Confirm Password</label>
-                <input id="confirm_password" name="confirm_password" type="password">
-                <span>Your passwords do not match</span>
-            </p>
+                <p>
+                    <label for="confirm_password" class="floatLabel">Confirm Password</label>
+                    <input id="confirm_password" name="confirm_password" type="password">
+                    <span>Your passwords do not match</span>
+                </p>
 
-            <p>
-                <label for="studentID" class="floatLabel">StudentID:</label>
-                <input id="studentID" name="studentID" type="text">
-            </p>
+                <p>
+                    <label for="studentID" class="floatLabel">StudentID:</label>
+                    <input id="studentID" name="studentID" type="text">
+                </p>
 
-            <p>
-                <label for="courseMain" class="floatLabel">Course:</label>
-                <input id="courseMain" name="courseMain" type="text">
-            </p>
+                <p>
+                    <label for="courseMain" class="floatLabel">Course:</label>
+                    <input id="courseMain" name="courseMain" type="text">
+                </p>
 
-            <p>
-                <label for="year" class="floatLabel">Year of Study:</label>
-                <input id="year" name="year" type="number">
-            </p>
+                <p>
+                    <label for="year" class="floatLabel">Year of Study:</label>
+                    <input id="year" name="year" type="number">
+                </p>
 
-            <p>
-                <label for="picture" class="floatLabel">Choose Profile Picture:</label>
-                <input type="file" name="picture" accept="image/*" />
-            </p>
+                <p>
+                    <label for="picture" class="floatLabel">Choose Profile Picture:</label>
+                    <input type="file" name="picture" accept="image/*" />
+                </p>
 
-              <p>
-                  <input type="submit" value="Create My Account" id="submit">
-              </p> 
-          </form>
-          <script>
-              var $password = $("#password");
-    	    var $confirmPassword = $("#confirm_password");
+                <p>
+                      <input type="submit" value="Create My Account" id="submit">
+                </p>
+        </form>
+        <script>
+            var $password = $("#password");
+            var $confirmPassword = $("#confirm_password");
 
             //Hide hints
             $("form span").hide();
 
             function isPasswordValid() {
-            return $password.val().length > 8;
+              return $password.val().length > 8;
             }
 
             function arePasswordsMatching() {
-            return $password.val() === $confirmPassword.val();
+                return $password.val() === $confirmPassword.val();
             }
 
             function canSubmit() {
-            return isPasswordValid() && arePasswordsMatching();
+                return isPasswordValid() && arePasswordsMatching();
             }
 
-                function passwordEvent(){
-                    //Find out if password is valid  
-                    if(isPasswordValid()) {
-                    //Hide hint if valid
-                    $password.next().hide();
-                    } else {
-                    //else show hint
-                    $password.next().show();
-                    }
-                }
+             function passwordEvent(){
+                 //Find out if password is valid
+                 if(isPasswordValid()) {
+                     //Hide hint if valid
+                     $password.next().hide();
+                 } else {
+                     //else show hint
+                     $password.next().show();
+                 }
+             }
 
-                function confirmPasswordEvent() {
-                //Find out if password and confirmation match
-                if(arePasswordsMatching()) {
-                    //Hide hint if match
-                    $confirmPassword.next().hide();
-                } else {
-                    //else show hint 
-                    $confirmPassword.next().show();
-                }
-                }
+              function confirmPasswordEvent() {
+                  //Find out if password and confirmation match
+                  if(arePasswordsMatching()) {
+                      //Hide hint if match
+                      $confirmPassword.next().hide();
+                  } else {
+                      //else show hint
+                      $confirmPassword.next().show();
+                  }
+              }
 
-                function enableSubmitEvent() {
-                $("#submit").prop("disabled", !canSubmit());
-                }
+              function enableSubmitEvent() {
+                  $("#submit").prop("disabled", !canSubmit());
+              }
 
-                //When event happens on password input
-                $password.focus(passwordEvent).keyup(passwordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
+              //When event happens on password input
+              $password.focus(passwordEvent).keyup(passwordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
 
-                //When event happens on confirmation input
-                $confirmPassword.focus(confirmPasswordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
+              //When event happens on confirmation input
+              $confirmPassword.focus(confirmPasswordEvent).keyup(confirmPasswordEvent).keyup(enableSubmitEvent);
 
-                enableSubmitEvent();
-          </script>
+              enableSubmitEvent();
+        </script>
 
 
 
     {% endif %}
-    {% endblock %}
+{% endblock %}

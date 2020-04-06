@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from tradebooks.models import UserProfile, Book,Post
+from tradebooks.models import UserProfile, Book,Post, Listing
 from django.contrib.auth.forms import UserChangeForm
 
 class UserForm(forms.ModelForm):

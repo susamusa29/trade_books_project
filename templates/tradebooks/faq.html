@@ -1,40 +1,61 @@
+<!DOCTYPE html>
+<!-- an extremely simple faq page
+
+note:
+extremely barebone will change to accordion style if we have the time
+
+todo:
+edit font
+add collapsible accordion style faq page.
+
+Author: Teoh Yee Hou (2471020t)
+Filename: faq.html
+-->
 {% extends 'tradebooks/base.html' %}
-{% load staticfiles %} 
+{% load staticfiles %}
 
-<html>
+{% block title_block %}
+    FAQ
+{% endblock %}
 
-    <head>
-        <title>FAQ</title>
-    </head>
+{% block body_block %}
 
-    <body style="background-color:light blue;">
-        <h1>For more questions contact us via contact page</h1>
+<div class="container">
+    <div class="row">
+        <h5 class="display-5">Some question?</h5>
+    </div>
+    <div class="row">
+        <p class="lead">answer to your question</p>
+        <br/>
+    </div>
+    <hr/>
+        <div class="row">
+        <h5 class="display-5">Some question?</h5>
+    </div>
+    <div class="row">
+        <p class="lead">answer to your question</p>
+        <br/>
+    </div>
+</div>
 
-        <h2>Q.1: Is the website only available to UoG students?</h2>
+        <!--<h1>For more questions contact us via contact page</h1>-->
 
-        <div class=answer>Ans: Yes, students can only register with their UoG student ID.</div>
+        <!--<h2>Q.1: Is the website only available to UoG students?</h2>-->
 
-        <h2>Q.2: Is the price fixed?</h2>
+        <!--<div class=answer>Ans: Yes, students can only register with their UoG student ID.</div>-->
 
-        <div class=answer>No, the price is set my the seller. Although, we cannot influence it, you may contact
-         the seller via email to negotiate. </div>
+        <!--<h2>Q.2: Is the price fixed?</h2>-->
 
-        <h2>Q.3: How do I obtain the book?</h2>
+        <!--<div class=answer>No, the price is set by the seller. Although, we cannot influence it, you may contact-->
+         <!--the seller via email to negotiate. </div>-->
 
-        <div class=answer>Once, you have an agreement with the seller
-         you may go ahead to the book page and click the purchase option. We will send you
-         a confirmation email. Upon confirmation, the book will be listed as sold and you 
-         may set up a time and place on campus to exchange the book for cash or another payment
-         option. </div>
+        <!--<h2>Q.3: How do I obtain the book?</h2>-->
 
-        <style>
+        <!--<div class=answer>Once, you have an agreement with the seller-->
+         <!--you may go ahead to the book page and click the purchase option. We will send you-->
+         <!--a confirmation email. Upon confirmation, the book will be listed as sold and you -->
+         <!--may set up a time and place on campus to exchange the book for cash or another payment-->
+         <!--option. </div>-->
 
-       h2 {}
 
-       .answer {color:red} 
-
-       </style>
-
-  </body>
-
-</html>
+{% endblock %}

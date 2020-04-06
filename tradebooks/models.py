@@ -3,6 +3,13 @@
 Note:
 added custom save for users(teoh) and books(Stanislava)
 added listing
+edited to remove bookID, foreign key for listing to point to book so its a more
+polished approach overall.
+changed slug to include book id, book name and username to allow duplicate
+listings but different id
+
+todo:
+remove price from listing as book already have it.
 
 author: Stanislava Dyakova (2390717d)
         Teoh Yee Hou (2471020t)
@@ -80,7 +87,7 @@ class Book(models.Model):
 
 #   we will be autogenerating a primary key
 #   (However, Django offers the same automatic ID, so probably unnecesary)
-    bookID = models.IntegerField(primary_key = True)
+#     bookID = models.IntegerField(primary_key = True)
 
 # Remark :
 # maybe suitable for database to add all courses for the search API
@@ -137,18 +144,20 @@ class Payment(models.Model):
 class Listing(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     info = models.CharField(max_length=3000, default="", blank=True)
-    price = models.IntegerField(default=0)
-    # book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    book = models.CharField(max_length=128)
+    # price = models.IntegerField(default=0)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    # book = models.CharField(max_length=128)
 
     slug = models.SlugField(unique=True, default="")
 
     def save(self, *args, **kwargs):
-        self.slug = slugify("{}{}".format(self.book, self.user))
+        self.slug = slugify("{} {} {}".format(self.book.id,
+                                              self.book,
+                                              self.user))
         super(Listing, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.book
+        return self.book.bookName
 
 #API Use
 class Post(models.Model):
