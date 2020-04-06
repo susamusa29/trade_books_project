@@ -26,12 +26,16 @@ Filename: books.html
 
     <h4 class="display-4">All Books/Listings</h4>
     <hr/>
-    <!-- patination -->
+    <!-- pagination -->
     <div class="pagination">
         <span class="step-links">
             {% if listings.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ listings.previous_page_number }}">previous</a>
+                <a href="?page=1">
+                    <i class="fas fa-angle-double-left"></i>
+                </a>
+                <a href="?page={{ listings.previous_page_number }}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
             {% endif %}
 
             <span class="current">
@@ -39,8 +43,12 @@ Filename: books.html
             </span>
 
             {% if listings.has_next %}
-                <a href="?page={{ listings.next_page_number }}">next</a>
-                <a href="?page={{ listings.paginator.num_pages }}">last &raquo;</a>
+                <a href="?page={{ listings.next_page_number }}">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+                <a href="?page={{ listings.paginator.num_pages }}">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
             {% endif %}
         </span>
     </div>
@@ -78,8 +86,12 @@ Filename: books.html
     <div class="pagination">
         <span class="step-links">
             {% if listings.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ listings.previous_page_number }}">previous</a>
+                <a href="?page=1">
+                    <i class="fas fa-angle-double-left"></i>
+                </a>
+                <a href="?page={{ listings.previous_page_number }}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
             {% endif %}
 
             <span class="current">
@@ -87,8 +99,12 @@ Filename: books.html
             </span>
 
             {% if listings.has_next %}
-                <a href="?page={{ listings.next_page_number }}">next</a>
-                <a href="?page={{ listings.paginator.num_pages }}">last &raquo;</a>
+                <a href="?page={{ listings.next_page_number }}">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+                <a href="?page={{ listings.paginator.num_pages }}">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
             {% endif %}
         </span>
     </div>

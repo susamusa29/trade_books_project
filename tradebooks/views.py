@@ -216,11 +216,17 @@ def user(request):
     # context_dict = {}
     #
     # showlisting(context_dict, listing_name_slug)
+    all_listing = Listing.objects.all()
+    paginator = Paginator(all_listing, 1)
+
+    page = request.GET.get('page')
+
+    listings = paginator.get_page(page)
 
 
 
     return render(request, 'tradebooks/user.html', context={
-        "listings": Listing.objects.all(),
+        "listings": listings,
     })
 #code to edit a profile
 @login_required
@@ -275,9 +281,15 @@ def change_password(request):
 
 def catalog(request):
     """Catalog view."""
+    all_books = Book.objects.order_by("bookName")
+    paginator = Paginator(all_books, 3)
+
+    page = request.GET.get('page')
+
+    books = paginator.get_page(page)
 
     return render(request, 'tradebooks/catalog.html', context={
-        "books": Book.objects.order_by("bookName")
+        "books": books
     })
 
 

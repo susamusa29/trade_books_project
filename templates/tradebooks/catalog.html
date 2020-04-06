@@ -22,6 +22,35 @@ Filename: catalog.html
     <small class="text-muted">- books for reference</small></h4><br/>
     <p>Some of these books may not longer be listed but are still kept
     here for reference</p>
+    <br/>
+
+    <!-- pagination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if books.has_previous %}
+                <a href="?page=1">
+                    <i class="fas fa-angle-double-left"></i>
+                </a>
+                <a href="?page={{ books.previous_page_number }}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ books.number }} of {{ books.paginator.num_pages }}.
+            </span>
+
+            {% if books.has_next %}
+                <a href="?page={{ books.next_page_number }}">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+                <a href="?page={{ books.paginator.num_pages }}">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            {% endif %}
+        </span>
+    </div>
+
     <hr/>
     {% if books %}
         {% for book in books %}
@@ -48,6 +77,33 @@ Filename: catalog.html
             <hr/>
         {% endfor %}
     {% endif %}
+
+    <!-- pagination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if books.has_previous %}
+                <a href="?page=1">
+                    <i class="fas fa-angle-double-left"></i>
+                </a>
+                <a href="?page={{ books.previous_page_number }}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ books.number }} of {{ books.paginator.num_pages }}.
+            </span>
+
+            {% if books.has_next %}
+                <a href="?page={{ books.next_page_number }}">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+                <a href="?page={{ books.paginator.num_pages }}">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            {% endif %}
+        </span>
+    </div>
 </div>
 
 {% endblock %}
