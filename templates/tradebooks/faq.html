@@ -2,11 +2,12 @@
 <!-- an extremely simple faq page
 
 note:
-extremely barebone will change to accordion style if we have the time
+added collapsible accordion. faq text is done by haroon
+text by abrar haroon.
 
 todo:
 edit font
-add collapsible accordion style faq page.
+
 
 Author: Teoh Yee Hou (2471020t)
 Filename: faq.html
@@ -20,24 +21,25 @@ Filename: faq.html
 
 {% block body_block %}
 
-<div class="container">
-    <div class="row">
-        <h5 class="display-5">Some question?</h5>
-    </div>
-    <div class="row">
-        <p class="lead">answer to your question</p>
-        <br/>
-    </div>
-    <hr/>
-        <div class="row">
-        <h5 class="display-5">Some question?</h5>
-    </div>
-    <div class="row">
-        <p class="lead">answer to your question</p>
-        <br/>
-    </div>
-</div>
+<!--<div class="container">-->
+    <!--<div class="row">-->
+        <!--<h5 class="display-5">Some question?</h5>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+        <!--<p class="lead">answer to your question</p>-->
+        <!--<br/>-->
+    <!--</div>-->
+    <!--<hr/>-->
+        <!--<div class="row">-->
+        <!--<h5 class="display-5">Some question?</h5>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+        <!--<p class="lead">answer to your question</p>-->
+        <!--<br/>-->
+    <!--</div>-->
+<!--</div>-->
 
+        <!-- abrar's text -->
         <!--<h1>For more questions contact us via contact page</h1>-->
 
         <!--<h2>Q.1: Is the website only available to UoG students?</h2>-->
@@ -57,5 +59,63 @@ Filename: faq.html
          <!--may set up a time and place on campus to exchange the book for cash or another payment-->
          <!--option. </div>-->
 
+
+<div class="container spacer-top">
+    <h4 class="display-4">
+        FAQ.
+        <small class="text-muted">For more questions contact us via contact page</small>
+    </h4>
+    <hr/>
+    <div id="accordion" class="spacer-top">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                       <h5 class="display-5">Q.1: Is the website only available to UoG students?</h5>
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                Ans: Yes, students can only register with their UoG student ID.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h5 class="display-5">Q.2: Is the price fixed?</h5>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    Ans: No, the price is set by the seller. Although, we cannot influence it, you may contact the
+                    seller via email to negotiate.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h5 class="display-5">Q.3: How do I obtain the book?</h5>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    Once, you have an agreement with the seller
+                    you may go ahead to the book page and click the purchase option. We will send you
+                    a confirmation email. Upon confirmation, the book will be listed as sold and you
+                    may set up a time and place on campus to exchange the book for cash or another payment
+                    option.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

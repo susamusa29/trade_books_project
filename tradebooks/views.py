@@ -34,6 +34,7 @@ from functools import reduce
 # non-django
 # new one added because of registration form
 from tradebooks.forms import UserForm, UserProfileForm, BookForm, UserEditForm
+from tradebooks.forms import ListingForm
 from tradebooks.models import Listing, Book
 from . import config
 from . import forms
@@ -128,7 +129,11 @@ def register(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
     
-    return render(request, 'tradebooks/register.html', context = {'user_form': user_form, 'profile_form': profile_form,'registered': registered})
+    return render(request,
+                  'tradebooks/register.html',
+                  context = {'user_form': user_form,
+                             'profile_form': profile_form,
+                             'registered': registered})
         
 #view to show listed products
 #maybe we need a view to list products?
@@ -149,27 +154,37 @@ def add_book(request):
     if(request == 'POST'):
         #creating a form object
         #taking information from the form information
-        add_form = BookForm(request.POST)
+        book_form = BookForm(request.POST)
+        listing_form = ListingForm(request.POST)
 
 
-        if(add_form.is_valid()):
-            book.bookSold = user
-
+        if(book_form.is_valid() and listing_form.is_valid()):
+            # book.bookSold = user
             #save form to database
-            book = add_form.save(commit=True)
+            book = book_form.save(commit=False)
+
 
             if 'bookImage' in request.FILES:
                 book.bookImage = request.FILES['bookImage']
             
             book.save()
+            listing = listing_form.save(commit=False)
+            listing.book = book
+            listing.user = request.user
+            listing.save()
 
             added = True
         else:
-                print(add_form.errors)
+            print(book_form.errors, listing_form.errors)
     else:
-        add_form=BookForm()
+        book_form=BookForm()
+        listing_form = ListingForm()
 
-    return render(request, 'tradebooks/add_book.html', context = {'add_form':add_form, 'added': added})
+    return render(request,
+                  'tradebooks/add_book.html',
+                  context={'book_form':book_form,
+                           "listing_form":listing_form,
+                           'added': added})
 
 
 
