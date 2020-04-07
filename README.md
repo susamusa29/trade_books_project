@@ -1,4 +1,4 @@
-![TradeBooksLogo](tradebooks/static/images/tradebooklogo.png)
+![TradeBooksLogo](/static/images/tradebooklogo.png)
 # Tradebooks
 
 Tradebooks is a webpage that aids students in buying and selling used books. The site hopes to help students who may be less financially fortunate to get the books they require, as well as graduating students who may no longer need their books.
