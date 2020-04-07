@@ -126,9 +126,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-## License
-404: Nobody here but us chickens.
-
 ## Authors and Contact
 Teoh Yee Hou - [2471020t@student.gla.ac.uk](2471020t@student.gla.ac.uk)
 
@@ -136,12 +133,15 @@ Stanislava Dyakova - [2390717d@student.gla.ac.uk](2390717d@student.gla.ac.uk)
 
 Abrar Haroon - [2513933h@student.gla.ac.uk](2513933h@student.gla.ac.uk)
 
-Conor Brown??? - [2397922b@student.gla.ac.uk](2397922b@student.gla.ac.uk)
-
-
-~~'NoneType' object has no attribute 'Conor Brown'~~
+Conor Brown - [2397922b@student.gla.ac.uk](2397922b@student.gla.ac.uk)
 
 ## Acknowledgements
 [Make a README](https://www.makeareadme.com/)
 
 [Font Awesome](https://fontawesome.com/)
+
+[Tango With Django](https://github.com/maxwelld90/tango_with_django_2_code)
+
+[SMTPlib](https://docs.python.org/3/library/smtplib.html)
+
+[StackOverflow](https://stackoverflow.com/)
