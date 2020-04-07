@@ -7,6 +7,7 @@ edited to remove bookID, foreign key for listing to point to book so its a more
 polished approach overall.
 changed slug to include book id, book name and username to allow duplicate
 listings but different id
+added contact us model
 
 todo:
 remove price from listing as book already have it.
@@ -165,6 +166,9 @@ class ContactUs(models.Model):
     email = models.EmailField()
     title = models.CharField(max_length=50)
     message = models.TextField()
+
+    class Meta:
+        verbose_name_plural = 'Contact Us'
 
     def __str__(self):
         return self.title
