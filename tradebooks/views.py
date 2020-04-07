@@ -151,7 +151,7 @@ def add_book(request):
     added = False
     user= request.user.id
 
-    messages.success(request, request)
+
     if(request.method == 'POST'):
         #creating a form object
         #taking information from the form information
@@ -232,11 +232,18 @@ def delete_listing(request, listing_name_slug):
 
     lister = listing.user.user
 
+
     if request.method == "POST" and \
             request.user.is_authenticated and \
-            request.user.username == lister:
+            request.user == lister:
+
+        if request.POST.get('deleteBook', 'dne') == '':
+            delete_book = Book.objects.get(id=listing.book.id)
+            delete_book.delete()
+            messages.success(request, "Book successfully deleted!")
+
         listing.delete()
-        messages.success(request, "Post successfully deleted!")
+        messages.success(request, "Listing successfully removed!")
         return redirect(reverse('tradebooks:user'))
 
     context = {'listing': listing,

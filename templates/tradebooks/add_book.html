@@ -21,117 +21,128 @@
 
 {% block body_block%}
 
-{% block header %}
-{% endblock %}
+    {% block header %}
+    {% endblock %}
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
+    <div class="container">
 
-<div class="row">
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <div class="row">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
 
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                </button>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                <i class="fas fa-times-circle"></i>
+                            </span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!--if successful-->
+        {% if added %}
+            <div class ="text">
+                <h5 class="display-5">
+                    Thank you your book has been added. Click
+                    <a href="{% url 'tradebooks:user' %}">
+                        here
+                    </a>
+                    to get back to profile.
+                    <br/>
+                    <small class="text-muted">
+                        Or add another listing:
+                    </small>
+                </h5>
             </div>
-            {% endfor %}
-        </ul>
-    {% endif %}
-</div>
+        {% endif %}
+    <!-- Labels for the form -->
+        <form id="add_form" method="post" action="{% url 'tradebooks:add' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Add your Book</h2>
+            <p>
+                <label for="bookISBN" class="floatLabel">Book ISBN:</label>
+                <input id="bookISBN" name="bookISBN" type="text">
+            </p>
 
-<!--if successful-->
-{% if added %}
-    <div class ="text">
-        Thank you your book has been added. Please press <a href="{% url 'tradebooks:index' %}">here.</a>
+            <p>
+                <label for="bookName" class="floatLabel">Book Name:</label>
+                <input id="bookName" name="bookName" type="text">
+            </p>
+
+            <p>
+                <label for="bookAuthor" class="floatLabel">Author:</label>
+                <input id="bookAuthor" name="bookAuthor" type="text">
+            </p>
+
+            <p>
+                <label for="course" class="floatLabel">Course suitability:</label>
+                <input id="course" name="course" type="text">
+            </p>
+
+            <p>
+                <label for="bookDescription" class="floatLabel">Book Description:</label>
+                <input id="bookDescription" name="bookDescription" type="text">
+            </p>
+
+            <p>
+                <label for="info" class="floatLabel">Listing Book Info:</label>
+                <input id="info" name="info" type="text">
+            </p>
+
+            <p>
+                <label for="price" class="floatLabel">Price:</label>
+                <input id="price" name="price" type="number">
+            </p>
+
+            <p>
+                <label for="currency" class="floatLabel">Currency(Please type it with 3 Capital letters):</label>
+                <input id="currency" name="currency" type="text">
+            </p>
+
+            <!--<p>-->
+                <!--<label for="studentID" class="floatLabel">StudentID:</label>-->
+                <!--<input id="studentID" name="studentID" type="text">-->
+            <!--</p>-->
+
+            <!--<p>-->
+                <!--<label for="courseMain" class="floatLabel">Course:</label>-->
+                <!--<input id="courseMain" name="courseMain" type="text">-->
+            <!--</p>-->
+
+            <p>
+                <label for="year" class="floatLabel">Year of Study(Suitability):</label>
+                <input id="year" name="year" type="number">
+            </p>
+
+            <p>
+                <label for="bookImage" class="floatLabel">Book Image:</label>
+                <input type="file" name="bookImage" accept="image/*" />
+            </p>
+
+            <p>
+                <input type="submit" value="Add my Book" id="submit">
+            </p>
+        </form>
+        <script>
+
+            function canSubmit() {
+            return true;
+            }
+
+
+            function enableSubmitEvent() {
+            $("#submit").prop("disabled", !canSubmit());
+            }
+
+             enableSubmitEvent();
+         </script>
+
     </div>
-{%else%}
-<!-- Labels for the form -->
-    <form id="add_form" method="post" action="{% url 'tradebooks:add' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h2>Add your Book</h2>
-        <p>
-            <label for="bookISBN" class="floatLabel">Book ISBN:</label>
-            <input id="bookISBN" name="bookISBN" type="text">
-        </p>
-
-        <p>
-            <label for="bookName" class="floatLabel">Book Name:</label>
-            <input id="bookName" name="bookName" type="text">
-        </p>
-
-        <p>
-            <label for="bookAuthor" class="floatLabel">Author:</label>
-            <input id="bookAuthor" name="bookAuthor" type="text">
-        </p>
-
-        <p>
-            <label for="course" class="floatLabel">Course suitability:</label>
-            <input id="course" name="course" type="text">
-        </p>
-
-        <p>
-            <label for="bookDescription" class="floatLabel">Book Description:</label>
-            <input id="bookDescription" name="bookDescription" type="text">
-        </p>
-
-        <p>
-            <label for="info" class="floatLabel">Listing Book Info:</label>
-            <input id="info" name="info" type="text">
-        </p>
-
-        <p>
-            <label for="price" class="floatLabel">Price:</label>
-            <input id="price" name="price" type="number">
-        </p>
-
-        <p>
-            <label for="currency" class="floatLabel">Currency(Please type it with 3 Capital letters):</label>
-            <input id="currency" name="currency" type="text">
-        </p>
-
-        <!--<p>-->
-            <!--<label for="studentID" class="floatLabel">StudentID:</label>-->
-            <!--<input id="studentID" name="studentID" type="text">-->
-        <!--</p>-->
-
-        <!--<p>-->
-            <!--<label for="courseMain" class="floatLabel">Course:</label>-->
-            <!--<input id="courseMain" name="courseMain" type="text">-->
-        <!--</p>-->
-
-        <p>
-            <label for="year" class="floatLabel">Year of Study(Suitability):</label>
-            <input id="year" name="year" type="number">
-        </p>
-
-        <p>
-            <label for="bookImage" class="floatLabel">Book Image:</label>
-            <input type="file" name="bookImage" accept="image/*" />
-        </p>
-
-        <p>
-            <input type="submit" value="Add my Book" id="submit">
-        </p>
-    </form>
-    <script>
-
-        function canSubmit() {
-        return true;
-        }
-
-
-        function enableSubmitEvent() {
-        $("#submit").prop("disabled", !canSubmit());
-        }
-
-         enableSubmitEvent();
-     </script>
-{% endif %}
-
 {% endblock %}
