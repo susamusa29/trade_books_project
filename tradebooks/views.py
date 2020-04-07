@@ -151,7 +151,8 @@ def add_book(request):
     added = False
     user= request.user.id
 
-    if(request == 'POST'):
+    messages.success(request, request)
+    if(request.method == 'POST'):
         #creating a form object
         #taking information from the form information
         book_form = BookForm(request.POST)
@@ -170,11 +171,13 @@ def add_book(request):
             book.save()
             listing = listing_form.save(commit=False)
             listing.book = book
-            listing.user = request.user
+            listing.user = request.user.userprofile
             listing.save()
 
             added = True
+            messages.success(request, "Your listing has been added.")
         else:
+            messages.error(request, "Your listing was not added.")
             print(book_form.errors, listing_form.errors)
     else:
         book_form=BookForm()
