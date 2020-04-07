@@ -1,11 +1,11 @@
 <p align="center">
     <a href="http://desuderata.pythonanywhere.com">
-      <h1 style:"color:rgb(119,179,212)">
+      <h1 style="color:rgb(119,179,212);">
         <img src="/static/images/tradebooklogo.png"
              alt="TradeBooks Logo"
              width="64"
              height="64">
-        Trade<span style:"color:rgb(199,92,92)">Books</span>
+        Trade<span style="color:rgb(199,92,92);">Books</span>
       </h1>
     </a>
 </p>
