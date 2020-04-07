@@ -2,6 +2,8 @@
 
 Note:
 added population for user(Teoh)
+added an extra user and book for kicks and giggles.(Teoh)
+
 
 todo:
 polish population script
@@ -118,6 +120,17 @@ def populate():
               'year': 3,
               'bookDescription': "slightly used",
               'price': 38,
+              },
+             # (teoh) sry cant resist adding what i initially added as a meme
+             # to this population script.
+             {'ISBN': 'okitaaaaaaaaa',
+              'bookImage': 'book_images/55327059_p0_master1200.jpg',
+              'bookName': 'how2shinsengumi',
+              'bookAuthor': 'Okita Souji',
+              'course': "Shinsengumi Captain's course",
+              'year': 1,
+              'bookDescription': 'Roses are red, Okita is cute, shinsengumi dakeni x2',
+              'price': 69,
               }]
 
     users = [{"username": "desuderata",
@@ -152,6 +165,14 @@ def populate():
               "profilePicture": "profile_images/7b9.jpg",
               "courseMain": "Engineering",
               "year": "4"},
+             {"username": "okiTACObigtaco",
+              "studentNumber": "1234567O",
+              "firstName": "Souji",
+              "lastName": "Okita",
+              "email": "1234567O-kita@student.gla.ac.uk",
+              "profilePicture": "profile_images/desuderata.jpg",
+              "courseMain": "Shinsengumi Captain's course",
+              "year": "4"},
              ]
 
     userlist = [add_user(u['username'],
@@ -170,7 +191,7 @@ def populate():
                          b['year'],
                          b['bookDescription'],
                          b['ISBN'],
-                         b['price']) for b in books]
+                         b['price'], ) for b in books]
 
     listings = [{"user":userlist[3],
                  "book":booklist[4],
@@ -191,8 +212,41 @@ def populate():
                  },
                 {"user": userlist[2],
                  "book": booklist[5],
+                 "description": "for the lulz",
+                 },
+                {"user": userlist[1],
+                 "book": booklist[6],
+                 "description": "Is this where i post my listings?",
+                 },
+                {"user": userlist[3],
+                 "book": booklist[1],
+                 "description": "Barely used. Price negotiable. please contact",
+                 },
+                {"user": userlist[2],
+                 "book": booklist[0],
+                 "description": "I didnt know how to price this book so i just"
+                                " used a random number generator to generate "
+                                "the price.",
+                 },
+                {"user": userlist[1],
+                 "book": booklist[8],
+                 "description": "Im in a hurry to sell off these books. used "
+                                "it for a year but its kept in good condition",
+                 },
+                {"user": userlist[0],
+                 "book": booklist[9],
+                 "description": "Nothing to see here... just a generic entry",
+                 },
+                {"user": userlist[2],
+                 "book": booklist[7],
                  "description": "First listing... hope its up",
-                 },]
+                 },
+                {"user": userlist[0],
+                 "book": booklist[10],
+                 "description": "okitaaaaaaaaa"},
+                {"user": userlist[4],
+                 "book": booklist[10],
+                 "description": "okitaaaaaaaaa"},]
 
     # takes all the books and adds them.
 
