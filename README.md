@@ -1,7 +1,7 @@
 <p align="center">
     <a href="http://desuderata.pythonanywhere.com">
       <h1 style:"color:rgb(119,179,212)">
-        <img src="static/images/tradebookslogo.png"
+        <img src="/static/images/tradebooklogo.png"
              alt="TradeBooks Logo"
              width="64"
              height="64">
