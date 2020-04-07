@@ -1,0 +1,101 @@
+.spacer-top{
+    margin-top:2em;
+}
+.spacer-bottom{
+    margin-bottom:2em;
+}
+.index-listing-text{
+    margin-left: auto;
+    margin-right: auto;
+}
+.lr-border{
+    border-left:1px rgb(229,229,229);
+    border-right:1px rgb(229,229,229);
+}
+.blur{
+    ilter: blur(8px);
+}
+.carousel-caption {
+    max-width: 100%;
+    width:100%;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.50);
+}
+.text-glow {
+    text-shadow: 0 0 3px rgb(0, 0, 0);
+}
+.carousel-img-top {
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 36em;
+    width:  24em;
+}
+.carousel-img {
+    object-fit: cover;
+    height: 36em;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.listing-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    /* dimension of a regular book is 6inches x 9inches hence the
+    6x9 scale factor */
+    width: 12em;
+    height: 18em;
+}
+.icon {
+    width:16px;
+    height:16px;
+}
+.logo {
+    width : 64px;
+    height : 64px;
+}
+span {
+    color:rgb(199,92,92);
+}
+header h1 {
+    color:rgb(119,179,212);
+}
+footer {
+    background-color : rgb(119,179,212);
+    /* this is so that the footer is always at the bottom */
+    position: relative;
+    left: 0;
+    right:0;
+    bottom: -300px;
+    background-color : rgb(119,179,212);
+}
+footer {
+    font-size: 1.2em;
+    <!--color: rgb(195, 195, 195);-->
+    font-weight: normal;
+    clear: left;
+}
+footer h5, footer p {
+    color: rgb(0, 60, 100);
+    font-size: 1em;
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    margin: 1em 0 0.5em 1em;
+}
+.footerNav ul {
+    margin-left: -1.6em;
+    line-height: 2em;
+    list-style-type: none;
+}
+.footerNav a:link, .footerNav a:visited {
+    text-decoration: none;
+    color: rgb(0, 60, 100);
+}
+.footerNav a:hover, .footerNav a:active {
+    text-decoration: underline;
+}

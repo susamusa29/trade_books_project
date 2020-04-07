@@ -14,27 +14,27 @@ Filename: search_result.html
 {% block body_block %}
 
 <div class="container">
-    <h3 class="display-3">Search For Listings</h3>
-    <div class="row" id="search">
-        <form class="form-inline"
-              action="{% url 'tradebooks:search_result' %}"
-              method="GET"
-              value="{{ request.GET.search }}">
-            <div class="form-group mx-sm-3 mb-2">
-                <input type="text"
-                       name="search"
-                       class="form-control"
-                       value="{{ request.GET.search }}"
-                       placeholder="Search..."/>
-            </div>
-            <button type="submit"
-                    name="submit"
-                    value="Search"
-                    class="btn btn-primary mb-2">
-                <i class = "fa fa-search text-white ml-3"
-                   aria-hidden = "true"></i></button>
-        </form>
-    </div>
+    <h3 class="display-3">Search Results</h3>
+    <!--<div class="row" id="search">-->
+        <!--<form class="form-inline"-->
+              <!--action="{% url 'tradebooks:search_result' %}"-->
+              <!--method="GET"-->
+              <!--value="{{ request.GET.search }}">-->
+            <!--<div class="form-group mx-sm-3 mb-2">-->
+                <!--<input type="text"-->
+                       <!--name="search"-->
+                       <!--class="form-control"-->
+                       <!--value="{{ request.GET.search }}"-->
+                       <!--placeholder="Search..."/>-->
+            <!--</div>-->
+            <!--<button type="submit"-->
+                    <!--name="submit"-->
+                    <!--value="Search"-->
+                    <!--class="btn btn-primary mb-2">-->
+                <!--<i class = "fa fa-search text-white ml-3"-->
+                   <!--aria-hidden = "true"></i></button>-->
+        <!--</form>-->
+    <!--</div>-->
 
     {% if submit_button == "Search" and request.GET.search != "" %}
         {% if listings %}

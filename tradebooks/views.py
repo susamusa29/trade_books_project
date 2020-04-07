@@ -314,6 +314,7 @@ def change_password(request):
         if form.is_valid():
             user_form = form.save()
             update_session_auth_hash(request, user_form)
+            messages.success(request, 'Your password has been changed!')
             return redirect(reverse('tradebooks:user'))
 
 
