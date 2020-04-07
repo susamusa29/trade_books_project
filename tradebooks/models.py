@@ -159,6 +159,16 @@ class Listing(models.Model):
     def __str__(self):
         return self.book.bookName
 
+class ContactUs(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField()
+    title = models.CharField(max_length=50)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.title
+
 #API Use
 class Post(models.Model):
     post = models.CharField(max_length=128, unique=True)

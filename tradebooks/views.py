@@ -34,7 +34,7 @@ from functools import reduce
 # non-django
 # new one added because of registration form
 from tradebooks.forms import UserForm, UserProfileForm, BookForm, UserEditForm
-from tradebooks.forms import ListingForm
+from tradebooks.forms import ListingForm, ContactForm
 from tradebooks.models import Listing, Book
 from . import config
 from . import forms
@@ -84,7 +84,7 @@ def user_login(request):
         else:
             #wrong details
             print(f"Invalid login details: {username}, {password}")
-            return render (request, 'index.html')
+            return redirect(reverse('tradebooks:login'))
     else:
         return render(request,'tradebooks/login.html')
 
@@ -216,7 +216,7 @@ def books(request):
 
     # test limit to 3 listings as there ara only 4 listings in populate.
     # will add more.
-    paginator = Paginator(all_listings, 3)
+    paginator = Paginator(all_listings, 6)
 
     page = request.GET.get('page')
 
@@ -261,7 +261,7 @@ def user(request):
     #
     # showlisting(context_dict, listing_name_slug)
     all_listing = Listing.objects.filter(user=request.user.userprofile)
-    paginator = Paginator(all_listing, 1)
+    paginator = Paginator(all_listing, 12)
 
     page = request.GET.get('page')
 
@@ -326,7 +326,7 @@ def change_password(request):
 def catalog(request):
     """Catalog view."""
     all_books = Book.objects.order_by("bookName")
-    paginator = Paginator(all_books, 3)
+    paginator = Paginator(all_books, 6)
 
     page = request.GET.get('page')
 
@@ -342,7 +342,17 @@ def help(request):
 
 
 def contactus(request):
-    return render(request, 'tradebooks/contactus.html')
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your message has been submitted."+
+                                      " We will contact you shortly.")
+
+    else:
+        form = ContactForm()
+    return render(request, 'tradebooks/contactus.html', {'form': form})
 
 
 def search(request):

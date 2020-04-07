@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from tradebooks.models import UserProfile, Book, Post, Listing
+from tradebooks.models import UserProfile, Book, Post, Listing, ContactUs
 from django.contrib.auth.forms import UserChangeForm
 
 
@@ -52,3 +52,11 @@ class UserEditForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name', 'password')
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactUs
+        fields = {"first_name", "last_name", "email", "title", "message"}
+
+

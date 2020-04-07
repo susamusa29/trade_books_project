@@ -13,9 +13,21 @@ author: Teoh Yee Hou(2471020t)
 {% block body_block %}
 
 <div class="container">
-    <h4 class="display-4">University of Glasgow</h4>
-    <p>Glasgow, G12 8QQ, Scotland<br/>
-       Tel: +44 (0) 141 330 2000</p>
+    <h4 class="display-4">Contact Us</h4>
+    <p>
+        <b>University Of Glasgow</b>
+        Glasgow, G12 8QQ, Scotland<br/>
+        Tel: +44 (0) 141 330 2000
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary"
+                type="submit"
+                name="submit">
+            Submit
+        </button>
+    </form>
 </div>
 
 {% endblock %}

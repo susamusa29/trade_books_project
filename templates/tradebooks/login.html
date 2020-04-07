@@ -225,10 +225,10 @@
       </div>
     </div>
 
-    <!-- rmb to change links to relative ie. {%url type., Teoh-->
+    <!-- rmb to change links to relative ie. {%url type., Teoh. changed it.-->
     <script type="text/javascript">
         document.getElementById("myButton").onclick = function () {
-            location.href = "http://127.0.0.1:8000/tradebooks/register/";
+            location.href = "{% url 'tradebooks:register' %}";
         };
     </script>
     <div id="id01" class="modal">
