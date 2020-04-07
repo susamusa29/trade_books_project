@@ -1,4 +1,15 @@
-![TradeBooksLogo](/static/images/tradebooklogo.png)
+<p align="center">
+    <a href="http://desuderata.pythonanywhere.com">
+      <h1 style:"color:rgb(119,179,212)">
+        <img src="static/images/tradebookslogo.png"
+             alt="TradeBooks Logo"
+             width="64"
+             height="64">
+        Trade<span style:"color:rgb(199,92,92)">Books</span>
+      </h1>
+    </a>
+</p>
+
 # Tradebooks
 
 Tradebooks is a webpage that aids students in buying and selling used books. The site hopes to help students who may be less financially fortunate to get the books they require, as well as graduating students who may no longer need their books.
