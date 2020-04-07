@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <!-- Simple help page
 
+Note:Added accordion style help page.
+
 author: Teoh Yee Hou(2471020t)
 -->
 {% extends 'tradebooks/base.html' %}
@@ -12,23 +14,64 @@ author: Teoh Yee Hou(2471020t)
 
 {% block body_block %}
 
-<div class="container">
-    <h4 class="display-4">Need Help?</h4>
-
-    <div class="row">
-        <h5 class="display-5">How to add listing?</h5>
-    </div>
-    <div class="row">
-        <p class="lead">answer to your question</p>
-        <br/>
-    </div>
+<div class="container spacer-top">
+    <h4 class="display-4">
+        Need Help? We are here to offer you a few quick tips.<br/>
+        <small class="text-muted">For more questions contact us via contact page</small>
+    </h4>
     <hr/>
-        <div class="row">
-        <h5 class="display-5">How to uninstall system32?</h5>
-    </div>
-    <div class="row">
-        <p class="lead">answer to your question</p>
-        <br/>
+    <div id="accordion" class="spacer-top">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                       <h5 class="display-5">Q.1: How do i add a listing?</h5>
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    Ans: To add a listing, you must have an account with us. Simply sign in
+                    to your account and navigate to your profile page. You will be able to add
+                    and delete your listings on your profile page. To add a listing, simply
+                    click on the add a listing option.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h5 class="display-5">Q.2: I have deleted my listing but my book remains on the catalog.
+                            What do i do?</h5>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    Ans: Please submit a contact us form, including your book details. Once we have verified that
+                    it is the correct book, we will proceed to delete yr book from our catalog.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h5 class="display-5">Q.3: How do i download more ram?</h5>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    Ans: Unfortunately, we are not able to assist you in downloading more ram. However,
+                    we are able to direct you to the people that may aid you in doing so. Simply call
+                    1800-DOWNLOAD-MORE-RAM or click <a href="https://downloadmoreram.com/">here</a>
+                    to get in touch with them.
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

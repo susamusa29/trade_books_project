@@ -13,7 +13,7 @@
     border-right:1px rgb(229,229,229);
 }
 .blur{
-    ilter: blur(8px);
+    filter: blur(8px);
 }
 .carousel-caption {
     max-width: 100%;
