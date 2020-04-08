@@ -1,6 +1,7 @@
 <!--
 Note:
 Minor aesthetic changes (teoh)
+Added crispy forms (teoh)
     Edit Template 
     Author: Stanislava Dyakova
     StudentID:2390717D
@@ -8,6 +9,7 @@ Minor aesthetic changes (teoh)
 {% extends 'tradebooks/base.html' %}
 {% load staticfiles %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block title_block %}
     Edit
 {% endblock %}
@@ -24,7 +26,7 @@ Minor aesthetic changes (teoh)
         <hr/>
         <form method="post">
             {% csrf_token %}
-            {{form.as_p}}
+            {{ form|crispy }}
             <button type="submit">Submit</button>
         </form>
     </div>

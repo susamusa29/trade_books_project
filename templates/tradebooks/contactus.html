@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <!-- Simple contact us page
-
+Note:
+Added crispy forms.
 author: Teoh Yee Hou(2471020t)
 -->
 {% extends 'tradebooks/base.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
+
 
 {% block title_block %}
     Contact Us
@@ -21,7 +24,7 @@ author: Teoh Yee Hou(2471020t)
     </p>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button class="btn btn-primary"
                 type="submit"
                 name="submit">

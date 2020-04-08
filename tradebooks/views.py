@@ -192,8 +192,8 @@ def add_book(request):
     return render(request, 'tradebooks/add_book.html')
 
 
-def show_listings(request, listing_name_slug):
-    """Show all books/listing view."""
+def show_listing(request, listing_name_slug):
+    """Show individual product listing"""
     contextDict = {}
     try:
 
@@ -211,6 +211,7 @@ def show_listings(request, listing_name_slug):
 
 #
 def books(request):
+    """Show all product listings"""
     all_listings = Listing.objects.all().order_by("id")
 
     # test limit to 3 listings as there ara only 4 listings in populate.

@@ -77,7 +77,8 @@ Filename: search_result.html
                 {% endfor%}
             {% endfor %}
         {% else %}
-            No search results for {{ request.GET.search }}
+            <h5 class="display-5">No search results for <b> {{ request.GET.search }}</b></h5>
+
         {% endif %}
     {% endif %}
 </div>
