@@ -127,13 +127,11 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Authors and Contact
-Teoh Yee Hou - [2471020t@student.gla.ac.uk](2471020t@student.gla.ac.uk)
+Teoh Yee Hou ([desuderata](https://github.com/desuderata)) - [2471020t@student.gla.ac.uk](2471020t@student.gla.ac.uk)
 
-Stanislava Dyakova - [2390717d@student.gla.ac.uk](2390717d@student.gla.ac.uk)
+Stanislava Dyakova ([susamusa29](https://github.com/susamusa29)) - [2390717d@student.gla.ac.uk](2390717d@student.gla.ac.uk)
 
-Abrar Haroon - [2513933h@student.gla.ac.uk](2513933h@student.gla.ac.uk)
-
-Conor Brown - [2397922b@student.gla.ac.uk](2397922b@student.gla.ac.uk)
+Abrar Haroon ([Abrar-Haroon](https://github.com/abrar-haroon))- [2513933h@student.gla.ac.uk](2513933h@student.gla.ac.uk)
 
 ## Acknowledgements
 [Make a README](https://www.makeareadme.com/)
@@ -145,3 +143,5 @@ Conor Brown - [2397922b@student.gla.ac.uk](2397922b@student.gla.ac.uk)
 [SMTPlib](https://docs.python.org/3/library/smtplib.html)
 
 [StackOverflow](https://stackoverflow.com/)
+
+[Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)
