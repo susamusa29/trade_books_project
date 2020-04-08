@@ -1,4 +1,6 @@
 <!--
+Note:
+Minor aesthetic changes (teoh)
     Edit Template 
     Author: Stanislava Dyakova
     StudentID:2390717D
@@ -16,7 +18,10 @@
 {% endblock %}
 {% block content %}
 {% endblock %}
+
     <div class="container">
+        <h4 class="display-4">Edit Profile</h4>
+        <hr/>
         <form method="post">
             {% csrf_token %}
             {{form.as_p}}

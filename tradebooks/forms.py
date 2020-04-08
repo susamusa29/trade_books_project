@@ -57,6 +57,11 @@ class UserEditForm(UserChangeForm):
         fields = ('username', 'email', 'first_name', 'last_name', )
         exclude =('password', )
 
+    # added this so password doesnto show up.
+    def __init__(self, *args, **kwargs):
+        super(UserEditForm, self).__init__(*args, **kwargs)
+        self.fields.pop('password')
+
 class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactUs

@@ -56,23 +56,25 @@ def index(request):
         "latestListings": Listing.objects.all().order_by("-id")[3:12],
     })
 
-#only people who have logged in can access this view 
+
+# only people who have logged in can access this view
 @login_required
-#view for logging out sign out button
+# view for logging out sign out button
 def user_logout(request):
-    #use of logout method to log out the user
+    # use of logout method to log out the user
     logout(request)
-    #goes back to home
+    # goes back to home
     return redirect(reverse('tradebooks:index'))
 
+
 def user_login(request):
-    #pull relevent info if pos request
+    # pull relevent info if pos request
     if request.method == 'POST':
-        #username and password needed
+        # username and password needed
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        #check if combination is valid
+        # check if combination is valid
         user = authenticate(username=username, password=password)
         if user:
             if user.is_active:
@@ -82,11 +84,11 @@ def user_login(request):
             else:
                 return HttpResponse("The account you entered is disabled.")
         else:
-            #wrong details
+            # wrong details
             print(f"Invalid login details: {username}, {password}")
             return redirect(reverse('tradebooks:login'))
     else:
-        return render(request,'tradebooks/login.html')
+        return render(request, 'tradebooks/login.html')
 
 
 def register(request):
@@ -100,7 +102,7 @@ def register(request):
         user_form = UserForm(request.POST)
         profile_form = UserProfileForm(request.POST)
 
-        if(user_form.is_valid() and profile_form.is_valid()):
+        if (user_form.is_valid() and profile_form.is_valid()):
             # save data to database
             user = user_form.save()
 
@@ -116,7 +118,6 @@ def register(request):
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
 
-
             # save UserProfile model instance
             profile.save()
 
@@ -128,15 +129,16 @@ def register(request):
         # not HTTP POST
         user_form = UserForm()
         profile_form = UserProfileForm()
-    
+
     return render(request,
                   'tradebooks/register.html',
-                  context = {'user_form': user_form,
-                             'profile_form': profile_form,
-                             'registered': registered})
-        
-#view to show listed products
-#maybe we need a view to list products?
+                  context={'user_form': user_form,
+                           'profile_form': profile_form,
+                           'registered': registered})
+
+
+# view to show listed products
+# maybe we need a view to list products?
 # def list_product(request):
 
 def product(request):
@@ -144,30 +146,28 @@ def product(request):
 
     return render(request, 'tradebooks/product.html')
 
-#adding a book functionality view
+
+# adding a book functionality view
 @login_required
 def add_book(request):
-    #value to tell the template whether addition is successful
+    # value to tell the template whether addition is successful
     added = False
-    user= request.user.id
+    user = request.user.id
 
-
-    if(request.method == 'POST'):
-        #creating a form object
-        #taking information from the form information
+    if (request.method == 'POST'):
+        # creating a form object
+        # taking information from the form information
         book_form = BookForm(request.POST)
         listing_form = ListingForm(request.POST)
 
-
-        if(book_form.is_valid() and listing_form.is_valid()):
+        if (book_form.is_valid() and listing_form.is_valid()):
             # book.bookSold = user
-            #save form to database
+            # save form to database
             book = book_form.save(commit=False)
-
 
             if 'bookImage' in request.FILES:
                 book.bookImage = request.FILES['bookImage']
-            
+
             book.save()
             listing = listing_form.save(commit=False)
             listing.book = book
@@ -180,19 +180,18 @@ def add_book(request):
             messages.error(request, "Your listing was not added.")
             print(book_form.errors, listing_form.errors)
     else:
-        book_form=BookForm()
+        book_form = BookForm()
         listing_form = ListingForm()
 
     return render(request,
                   'tradebooks/add_book.html',
-                  context={'book_form':book_form,
-                           "listing_form":listing_form,
+                  context={'book_form': book_form,
+                           "listing_form": listing_form,
                            'added': added})
 
-
-
-    #view to add books
+    # view to add books
     return render(request, 'tradebooks/add_book.html')
+
 
 def show_listings(request, listing_name_slug):
     """Show all books/listing view."""
@@ -209,6 +208,7 @@ def show_listings(request, listing_name_slug):
         contextDict["book"] = None
 
     return render(request, 'tradebooks/product.html', context=contextDict)
+
 
 #
 def books(request):
@@ -231,7 +231,6 @@ def delete_listing(request, listing_name_slug):
     listing = get_object_or_404(Listing, slug=listing_name_slug)
 
     lister = listing.user.user
-
 
     if request.method == "POST" and \
             request.user.is_authenticated and \
@@ -267,12 +266,12 @@ def user(request):
 
     listings = paginator.get_page(page)
 
-
     return render(request, 'tradebooks/user.html', context={
         "listings": listings,
     })
 
-#code to edit a profile
+
+# code to edit a profile
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
@@ -283,61 +282,48 @@ def edit_profile(request):
             return redirect(reverse('tradebooks:user'))
     else:
         form = UserEditForm(instance=request.user)
-        args = {'form':form}
+        args = {'form': form}
 
     return render(request, 'tradebooks/edit_profile.html', args)
 
+
 @login_required
-#def change_password(request):
-    # if request.method == 'POST':
-    #     form = PasswordChangeForm(data=request.POST, user=request.user)
-
-    #     if form.is_valid():
-    #         form.save()
-    #         update_session_auth_hash(request, form.user)
-    #         return redirect(reverse('tradebooks:user'))
-    #     else:
-    #         return redirect('tradebooks:about')
-    # else:
-    #     form = PasswordChangeForm(user=request.user)
-    #     args = {'form':form}
-
-    # return render(request, 'tradebooks/change_password.html', args)
+# def change_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(data=request.POST, user=request.user)
+#
+#         if form.is_valid():
+#             form.save()
+#             update_session_auth_hash(request, form.user)
+#             return redirect(reverse('tradebooks:user'))
+#         else:
+#             return redirect('tradebooks:about')
+#     else:
+#         form = PasswordChangeForm(user=request.user)
+#         args = {'form':form}
+#
+#     return render(request, 'tradebooks/change_password.html', args)
 def change_password(request):
+    """Change password view.
+    Note:
+    (teoh) previous version does not work so it is replaced by this version.
+    """
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
+
         if form.is_valid():
-            password_form = form.save()
-            update_session_auth_hash(request, password_form)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
+            user_form = form.save()
+            update_session_auth_hash(request, user_form)
+            messages.success(request, 'Your password has been changed!')
             return redirect(reverse('tradebooks:user'))
-        else:
-            messages.error(request, 'Please correct the error below.')
+
+
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'tradebooks/change_password.html', {
+    return render(request, 'tradebooks/change_password.html', context={
         'form': form
     })
-# def change_password(request):
-#     """Change password view.
-#     Note:
-#     (teoh) previous version does not work so it is replaced by this version.
-#     """
-#     if request.method == 'POST':
-#         form = PasswordChangeForm(request.user, request.POST)
 
-#         if form.is_valid():
-#             user_form = form.save()
-#             update_session_auth_hash(request, user_form)
-#             messages.success(request, 'Your password has been changed!')
-#             return redirect(reverse('tradebooks:user'))
-
-
-#     else:
-#         form = PasswordChangeForm(request.user)
-#     return render(request, 'tradebooks/change_password.html', context={
-#         'form': form
-#     })
 
 def catalog(request):
     """Catalog view."""
@@ -363,8 +349,8 @@ def contactus(request):
 
         if form.is_valid():
             form.save()
-            messages.success(request, "Your message has been submitted."+
-                                      " We will contact you shortly.")
+            messages.success(request, "Your message has been submitted." +
+                             " We will contact you shortly.")
 
     else:
         form = ContactForm()
@@ -424,7 +410,7 @@ def search_result(request):
             # books = Book.objects.filter(lookups).distinct()
             books = Book.objects.all()
 
-            #splits the query for individual words.
+            # splits the query for individual words.
             words = query.split()
             # lookup_dict = {"book_name": bookName__icontains,
             #                ""}
@@ -451,14 +437,12 @@ def search_result(request):
                          Q(bookAuthor__icontains=w)
                 books = books.filter(lookup).distinct()
 
-
             # lookup = reduce(lambda x, y: x | y, search)
             # books = Book.objects.filter(lookup).distinct()
 
-
-            context_dict ={'books': books,
-                           'submit_button': submit_button,
-                           'listings':Listing.objects.all()}
+            context_dict = {'books': books,
+                            'submit_button': submit_button,
+                            'listings': Listing.objects.all()}
 
             return render(request, 'tradebooks/search_result.html', context_dict)
 
@@ -468,10 +452,11 @@ def search_result(request):
     else:
         return render(request, 'tradebooks/search_result.html')
 
-#added(API)
+
+# added(API)
 def button(request):
-    
     return render(request, 'home.html')
+
 
 # external function obtains email from the user and sends them a confirmation in real time
 # # configuration settings for sensitive data in email in config.py
@@ -479,9 +464,8 @@ def button(request):
 
 def external(request):
     form = forms.HomeForm(request.POST)
-    if request.method =='POST':
-        if form.is_valid(): 
-
+    if request.method == 'POST':
+        if form.is_valid():
             to_email = form.cleaned_data.get('post')
             post = form.save(commit=False)
             post.is_active = False
@@ -489,7 +473,6 @@ def external(request):
             message = config.EMAIL_MESSAGE
             EMAIL_ADDRESS = config.EMAIL_HOST_USER
             EMAIL_PASSWORD = config.EMAIL_HOST_PASSWORD
-    
 
             msg = EmailMessage()
             msg['From'] = EMAIL_ADDRESS
@@ -497,18 +480,14 @@ def external(request):
             msg['subject'] = mail_subject
             msg.set_content(message)
             with smtplib.SMTP_SSL(config.EMAIL_HOST, config.EMAIL_PORT) as smtp:
-               
                 smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
                 smtp.send_message(msg)
                 messages.success(request, 'Thank you')
-            return HttpResponseRedirect('/tradebooks/books/')   
+            return HttpResponseRedirect('/tradebooks/books/')
 
     else:
 
-        return render(request, 'home.html', {'form':form})
-
-
-
+        return render(request, 'home.html', {'form': form})
 
 # def book_list(request, category_slug=None):
 #     category=None

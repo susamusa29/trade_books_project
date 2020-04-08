@@ -40,6 +40,6 @@ urlpatterns = [
     path('external/', views.external, name='external'),
     path('user/edit/', views.edit_profile, name='edit_profile'),
     path('edit/', views.edit_profile, name='edit'),
-    path('change-password/', views.change_password, name="change-password"),
+    path('user/password/', views.change_password, name="change-password"),
     path('product/<slug:listing_name_slug>/delete_listing/', views.delete_listing, name="delete_listing"),
 ]
