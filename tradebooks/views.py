@@ -288,41 +288,56 @@ def edit_profile(request):
     return render(request, 'tradebooks/edit_profile.html', args)
 
 @login_required
-# def change_password(request):
-#     if request.method == 'POST':
-#         form = PasswordChangeForm(data=request.POST, user=request.user)
-#
-#         if form.is_valid():
-#             form.save()
-#             update_session_auth_hash(request, form.user)
-#             return redirect(reverse('tradebooks:user'))
-#         else:
-#             return redirect('tradebooks:about')
-#     else:
-#         form = PasswordChangeForm(user=request.user)
-#         args = {'form':form}
-#
-#     return render(request, 'tradebooks/change_password.html', args)
+#def change_password(request):
+    # if request.method == 'POST':
+    #     form = PasswordChangeForm(data=request.POST, user=request.user)
+
+    #     if form.is_valid():
+    #         form.save()
+    #         update_session_auth_hash(request, form.user)
+    #         return redirect(reverse('tradebooks:user'))
+    #     else:
+    #         return redirect('tradebooks:about')
+    # else:
+    #     form = PasswordChangeForm(user=request.user)
+    #     args = {'form':form}
+
+    # return render(request, 'tradebooks/change_password.html', args)
 def change_password(request):
-    """Change password view.
-    Note:
-    (teoh) previous version does not work so it is replaced by this version.
-    """
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
-
         if form.is_valid():
-            user_form = form.save()
-            update_session_auth_hash(request, user_form)
-            messages.success(request, 'Your password has been changed!')
+            password_form = form.save()
+            update_session_auth_hash(request, password_form)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
             return redirect(reverse('tradebooks:user'))
-
-
+        else:
+            messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'tradebooks/change_password.html', context={
+    return render(request, 'tradebooks/change_password.html', {
         'form': form
     })
+# def change_password(request):
+#     """Change password view.
+#     Note:
+#     (teoh) previous version does not work so it is replaced by this version.
+#     """
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, request.POST)
+
+#         if form.is_valid():
+#             user_form = form.save()
+#             update_session_auth_hash(request, user_form)
+#             messages.success(request, 'Your password has been changed!')
+#             return redirect(reverse('tradebooks:user'))
+
+
+#     else:
+#         form = PasswordChangeForm(request.user)
+#     return render(request, 'tradebooks/change_password.html', context={
+#         'form': form
+#     })
 
 def catalog(request):
     """Catalog view."""
