@@ -1,6 +1,5 @@
 from django.urls import path
 from tradebooks import views
-from django.conf.urls.static import static
 from django.contrib import admin
 """
 note:

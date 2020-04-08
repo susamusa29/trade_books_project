@@ -14,9 +14,9 @@ author: Teoh Yee Hou (2471020t)
 """
 
 import smtplib
-import time
-import operator
+
 from email.message import EmailMessage
+
 
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -29,7 +29,6 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
-from functools import reduce
 
 # non-django
 # new one added because of registration form

@@ -279,5 +279,5 @@ def add_listing(username, bookname, description, price):
 
 # Start execution here!
 if __name__ == '__main__':
-    print('Starting Rango population script...')
+    print('Starting Tradebooks population script...')
     populate()
